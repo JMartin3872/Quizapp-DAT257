@@ -70,7 +70,7 @@ public class QuizGameView {
         exitButton.setForeground(Color.black);
         exitButton.setFocusPainted(false);
 
-        // addin buttons and title to the panel
+        // adding buttons and title to the panel
         gbc.gridx = 0;
         gbc.gridy = 0;
         menuPanel.add(titleLabel, gbc);
