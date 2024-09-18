@@ -1,5 +1,5 @@
 public interface Question {
     public int getQuestionId();
-    public String getQuestion();
+    public String getQuestionText();
     public String getAnswer();
 }
