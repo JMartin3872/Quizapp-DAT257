@@ -30,7 +30,7 @@ public class QuestionMultipleChoices implements Question{
         return this.questionId;
     }
     @Override
-    public String getQuestion(){
+    public String getQuestionText(){
         return this.questionText;
     }
     @Override
