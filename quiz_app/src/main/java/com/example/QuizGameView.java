@@ -85,7 +85,6 @@ public class QuizGameView {
         gbc.gridy = 3;
         menuPanel.add(exitButton, gbc);
 
-
         // creating the "Start Quiz" panel (another page)
         JPanel quizPanel = new JPanel();
         quizPanel.setBackground(new Color(255, 229, 204)); // different background color
@@ -106,11 +105,45 @@ public class QuizGameView {
         mainPanel.add(quizPanel, "Quiz");
         mainPanel.add(optionsPanel, "Options");
 
+        // From here to row 136, is temporary code for sprint 1
+        // Just some code to see a hardcoded question for sprint 1
+        JPanel questionPanel = new JPanel();
+        questionPanel.setBackground(new Color(255, 255, 0 )); // different background color
+        JLabel questionLabel = new JLabel("Why is it neccessary to recycle batteries and electronics?");
+        questionLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        questionPanel.add(questionLabel);
+
+        JPanel secondPanel = new JPanel(cardLayout);
+        secondPanel.add(questionPanel);
+        questionPanel.add(questionLabel, gbc);
+        
+        gbc.gridy = 1;
+
+        JLabel answerLabel1 = new JLabel("aaaa");
+        answerLabel1.setFont(new Font("Arial", Font.BOLD, 24));
+        questionPanel.add(answerLabel1, gbc);
+
+        gbc.gridy = 2;
+
+        JLabel answerLabel2 = new JLabel("bbbb");
+        answerLabel2.setFont(new Font("Arial", Font.BOLD, 24));
+        questionPanel.add(answerLabel2, gbc);
+
+        gbc.gridy = 3;
+
+        JLabel answerLabel3 = new JLabel("cccc");
+        answerLabel3.setFont(new Font("Arial", Font.BOLD, 24));
+        questionPanel.add(answerLabel3, gbc);
+
         // Add ActionListeners to the buttons to switch between panels
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(mainPanel, "Quiz"); // switch to the Quiz panel
+                cardLayout.show(secondPanel, "Quiz"); // switch to the Quiz panel
+                //for sprint 1
+                frame.remove(mainPanel);
+                frame.add(secondPanel);
+                
             }
         });
 
