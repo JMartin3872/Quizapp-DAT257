@@ -105,13 +105,16 @@ public class QuizGameView {
         mainPanel.add(quizPanel, "Quiz");
         mainPanel.add(optionsPanel, "Options");
 
-        // From here to row 136, is temporary code for sprint 1
+        // From here to row 139, is temporary code for sprint 1
         // Just some code to see a hardcoded question for sprint 1
         JPanel questionPanel = new JPanel();
+        questionPanel.setLayout(new GridBagLayout());
         questionPanel.setBackground(new Color(255, 255, 0 )); // different background color
         JLabel questionLabel = new JLabel("Why is it neccessary to recycle batteries and electronics?");
         questionLabel.setFont(new Font("Arial", Font.BOLD, 24));
         questionPanel.add(questionLabel);
+
+        gbc.gridy = 0;
 
         JPanel secondPanel = new JPanel(cardLayout);
         secondPanel.add(questionPanel);
@@ -119,19 +122,19 @@ public class QuizGameView {
         
         gbc.gridy = 1;
 
-        JLabel answerLabel1 = new JLabel("aaaa");
+        JLabel answerLabel1 = new JLabel("a) so that some companies can earn more money");
         answerLabel1.setFont(new Font("Arial", Font.BOLD, 24));
         questionPanel.add(answerLabel1, gbc);
 
         gbc.gridy = 2;
 
-        JLabel answerLabel2 = new JLabel("bbbb");
+        JLabel answerLabel2 = new JLabel("b) to work for a more sustainable future");
         answerLabel2.setFont(new Font("Arial", Font.BOLD, 24));
         questionPanel.add(answerLabel2, gbc);
 
         gbc.gridy = 3;
 
-        JLabel answerLabel3 = new JLabel("cccc");
+        JLabel answerLabel3 = new JLabel("c) it is not important");
         answerLabel3.setFont(new Font("Arial", Font.BOLD, 24));
         questionPanel.add(answerLabel3, gbc);
 
