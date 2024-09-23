@@ -1,13 +1,17 @@
 package com.example;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class QuizGameController {
-    
+
+    private QuizGameModel model;
+
     public QuizGameController(){
-        QuizGameView view = new QuizGameView();
+        new QuizGameView(model);
     }
 
     public static void main(String[] args){
-
         QuizGameController controller = new QuizGameController();
     }
     //test

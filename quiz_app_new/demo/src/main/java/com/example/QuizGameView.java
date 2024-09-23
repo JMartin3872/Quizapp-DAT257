@@ -9,13 +9,16 @@ import java.awt.event.ComponentEvent;
 
 public class QuizGameView {
 
+
     private JFrame frame;
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private JLabel titleLabel;
     private JButton startButton, optionsButton, exitButton;
+    private QuizGameModel model; // Model reference
 
-    public QuizGameView() {
+    public QuizGameView(QuizGameModel model) {
+
         // init. frame and UI components
         frame = new JFrame("Quiz Game Menu");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,38 +108,20 @@ public class QuizGameView {
         mainPanel.add(quizPanel, "Quiz");
         mainPanel.add(optionsPanel, "Options");
 
-        // From here to row 139, is temporary code for sprint 1
-        // Just some code to see a hardcoded question for sprint 1
         JPanel questionPanel = new JPanel();
         questionPanel.setLayout(new GridBagLayout());
         questionPanel.setBackground(new Color(255, 255, 0 )); // different background color
-        JLabel questionLabel = new JLabel("Why is it neccessary to recycle batteries and electronics?");
-        questionLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        questionPanel.add(questionLabel);
 
         gbc.gridy = 0;
 
         JPanel secondPanel = new JPanel(cardLayout);
         secondPanel.add(questionPanel);
-        questionPanel.add(questionLabel, gbc);
-        
-        gbc.gridy = 1;
-
-        JLabel answerLabel1 = new JLabel("a) so that some companies can earn more money");
-        answerLabel1.setFont(new Font("Arial", Font.BOLD, 24));
-        questionPanel.add(answerLabel1, gbc);
 
         gbc.gridy = 2;
 
-        JLabel answerLabel2 = new JLabel("b) to work for a more sustainable future");
-        answerLabel2.setFont(new Font("Arial", Font.BOLD, 24));
-        questionPanel.add(answerLabel2, gbc);
-
-        gbc.gridy = 3;
-
-        JLabel answerLabel3 = new JLabel("c) it is not important");
-        answerLabel3.setFont(new Font("Arial", Font.BOLD, 24));
-        questionPanel.add(answerLabel3, gbc);
+        JButton toMCQ = new JButton("Multiple Choice Questions");
+        toMCQ.setFont(new Font("Arial", Font.BOLD, 24));
+        questionPanel.add(toMCQ, gbc);
 
         // Add ActionListeners to the buttons to switch between panels
         startButton.addActionListener(new ActionListener() {
@@ -161,6 +146,14 @@ public class QuizGameView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0); // Exit the application
+            }
+        });
+
+        toMCQ.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MultipleChoicesQuizView();
+
             }
         });
 

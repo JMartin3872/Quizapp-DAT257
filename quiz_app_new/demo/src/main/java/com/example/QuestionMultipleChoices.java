@@ -1,5 +1,6 @@
 package com.example;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class QuestionMultipleChoices implements Question{
 
@@ -23,7 +24,7 @@ public class QuestionMultipleChoices implements Question{
         answers.add(falseAnswer2);
         this.trivia = trivia;
         this.questionId = questionId;
-
+        Collections.shuffle(answers); // added to shuffle the order of the answers on the buttons in MultipleChoicesQuizView!
     }
 
     @Override
