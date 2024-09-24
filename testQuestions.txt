@@ -1,0 +1,10 @@
+This is a question description. What is the meaning of Life?
+Bird
+Norman
+42
+The meaning of Life isn't actually known.
+Question no. 2: Is Agile simple to use in practice?
+Yes.
+No.
+It depends.
+Agile is actually a commonly misunderstood concept, everyone actually likes it.

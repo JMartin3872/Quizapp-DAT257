@@ -17,7 +17,7 @@ public class QuestionMultipleChoices implements Question{
 
 
     public QuestionMultipleChoices(String questionText,String correctAnswer, String falseAnswer1,String falseAnswer2,String trivia,int questionId){
-       this.questionText = questionText;
+        this.questionText = questionText;
         this.correctAnswer = correctAnswer;
         answers.add(correctAnswer);
         answers.add(falseAnswer1);
@@ -46,6 +46,10 @@ public class QuestionMultipleChoices implements Question{
 
     public String getCorrectAnswer(){
         return this.correctAnswer;
+    }
+
+    public String toString(){
+        return questionText + "\n" + answers.get(0) + "\n" + answers.get(1) + "\n" + answers.get(2) + "\n" + trivia;
     }
 
 }
