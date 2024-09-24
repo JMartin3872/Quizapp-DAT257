@@ -7,6 +7,7 @@ import java.util.Map;
 public class QuizGameModel {
     private Map<Integer, Question> questionMap = new HashMap<>();
     private int currentQuestionId = 0; // Default to the first question
+    private String username;
 
     public QuizGameModel() {
         // temporary solution for multiple choice questions :)
@@ -40,5 +41,9 @@ public class QuizGameModel {
         if (questionMap.containsKey(currentQuestionId + 2)) {
             currentQuestionId++;
         }
+    
+    public void setUsername(String username){
+        this.username = username;
+    }
     }
 }
