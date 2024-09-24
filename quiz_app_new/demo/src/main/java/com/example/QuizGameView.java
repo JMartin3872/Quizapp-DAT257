@@ -111,27 +111,28 @@ public class QuizGameView {
         JPanel questionPanel = new JPanel();
         questionPanel.setLayout(new GridBagLayout());
         questionPanel.setBackground(new Color(255, 255, 0 )); // different background color
-
+        mainPanel.add(questionPanel, "Quiz");
         gbc.gridy = 0;
 
-        JPanel secondPanel = new JPanel(cardLayout);
-        secondPanel.add(questionPanel);
-
+        MultipleChoicesQuizView mcqView = new MultipleChoicesQuizView(); // Create an instance of MultipleChoicesQuizView
+        mainPanel.add(mcqView.getPanel(), "MultipleChoice"); // Add the panel to CardLayout
         gbc.gridy = 2;
 
         JButton toMCQ = new JButton("Multiple Choice Questions");
         toMCQ.setFont(new Font("Arial", Font.BOLD, 24));
         questionPanel.add(toMCQ, gbc);
+        // Creating the MultipleChoicesQuizView panel
+
 
         // Add ActionListeners to the buttons to switch between panels
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(secondPanel, "Quiz"); // switch to the Quiz panel
+                cardLayout.show(mainPanel, "Quiz"); // switch to the Quiz panel
                 //for sprint 1
-                frame.remove(mainPanel);
-                frame.add(secondPanel);
-                
+                //frame.remove(mainPanel);
+                //frame.add(secondPanel);
+
             }
         });
 
@@ -152,8 +153,7 @@ public class QuizGameView {
         toMCQ.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new MultipleChoicesQuizView();
-
+                cardLayout.show(mainPanel, "MultipleChoice"); // Switch to the Multiple Choice Questions panel
             }
         });
 
@@ -191,4 +191,3 @@ public class QuizGameView {
         });
     }
 }
-

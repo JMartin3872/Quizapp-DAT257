@@ -1,13 +1,6 @@
 package com.example;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class MultipleChoicesQuizView {
 
-    private JFrame frame;
+    private JPanel mainPanel; // JPanel instead of JFrame
     private JLabel questionLabel;
     private JButton[] answerButtons = new JButton[3];
     private JButton submitButton;
@@ -25,42 +18,42 @@ public class MultipleChoicesQuizView {
     public MultipleChoicesQuizView() {
         model = new QuizGameModel();
 
-        // start JFrame
-        frame = new JFrame("Multiple Choice Quiz");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(720, 480);
+        // Create the main panel instead of a JFrame
+        mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setPreferredSize(new Dimension(720, 480)); // Set preferred size for consistency
 
+        // Setup the UI
         setupUI();
-
-        // Center JFrame on the computer screen
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
 
         // Load the first question
         loadQuestion();
     }
 
-    private void setupUI() { // component setup
-        frame.setLayout(new BorderLayout());
+    // Method to return the main panel, which can be added to another JFrame or JPanel
+    public JPanel getPanel() {
+        return mainPanel;
+    }
 
-        // question label in the center of the JFrame
+    private void setupUI() { // component setup
+        // question label in the center of the panel
         JPanel questionPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         questionLabel = new JLabel();
         questionLabel.setFont(new Font("Arial", Font.BOLD, 24));
         questionPanel.add(questionLabel);
-        frame.add(questionPanel, BorderLayout.NORTH); // Add the panel to the top
+        mainPanel.add(questionPanel, BorderLayout.NORTH); // Add the panel to the top
 
         questionPanel.setBorder(new EmptyBorder(30, 0, 0, 0));
         questionPanel.setBackground(new Color(232, 136, 216));
 
+        // Center panel for answer buttons
         JPanel centerPanel = new JPanel(new GridBagLayout());
-        frame.add(centerPanel, BorderLayout.CENTER);
+        mainPanel.add(centerPanel, BorderLayout.CENTER);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
 
         centerPanel.setBackground(new Color(232, 136, 216));
 
-        // Create answer buttons!
+        // Create answer buttons
         for (int i = 0; i < answerButtons.length; i++) {
             answerButtons[i] = new JButton();
             answerButtons[i].setFont(new Font("Arial", Font.PLAIN, 18));
@@ -85,10 +78,10 @@ public class MultipleChoicesQuizView {
 
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // handleSubmit(); // Soon to be added! responsible for everything that happens after the user answers the question
+                handleSubmit(); // Soon to be added! responsible for everything that happens after the user answers the question
             }
         });
-        frame.add(submitButton, BorderLayout.SOUTH);
+        mainPanel.add(submitButton, BorderLayout.SOUTH);
     }
 
     private void highlightSelectedButton(int index) {
@@ -119,5 +112,33 @@ public class MultipleChoicesQuizView {
             answerButtons[i].setText(currentQuestion.getAnswers().get(i));
         }
     }
-    // add handleSubmit() here!!
+
+    private void handleSubmit() { // when the answer is submitted
+        // if user doesn't choose an answer and tries to click submit:
+        if (selectedAnswer == -1) {
+            JOptionPane.showMessageDialog(mainPanel, "Please select an answer.");
+            return;
+        }
+
+        // see if chosen answer is correct
+        QuestionMultipleChoices currentQuestion = (QuestionMultipleChoices) model.getCurrentQuestion();
+
+        String message; // used when printing correct! or wrong! answer
+
+        if (currentQuestion.getAnswers().get(selectedAnswer).equals(currentQuestion.getCorrectAnswer())) {
+            message = "Correct!";
+        }
+        else {
+            message = "Wrong! The correct answer is: " + currentQuestion.getCorrectAnswer();
+        }
+
+        // Display answer correctness, name the frame "Result"
+        JOptionPane.showMessageDialog(mainPanel, message, "Result", JOptionPane.INFORMATION_MESSAGE);
+
+        model.nextQuestion();
+        loadQuestion();
+        selectedAnswer = -1; // reset selected answer
+
+        resetButtonBackgrounds(); // make all button backgrounds white when new question
+    }
 }
