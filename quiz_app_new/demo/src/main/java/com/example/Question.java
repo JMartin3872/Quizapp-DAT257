@@ -6,4 +6,5 @@ public interface Question {
     public int getQuestionId();
     public String getQuestionText();
     public ArrayList<String> getAnswers();
+    public void shuffleAnswers();
 }
