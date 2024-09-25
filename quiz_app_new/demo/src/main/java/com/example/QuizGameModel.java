@@ -1,14 +1,13 @@
 package com.example;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class QuizGameModel {
     private Map<Integer, Question> questionMap = new HashMap<>();
     private int currentQuestionId = 0; // Default to the first question
-    private String username;
+    private String userName;
+    private int score = 0;
+
 
     public QuizGameModel() {
         // QuestionReaderMultipleChoices used to read questions from  testQeustions.txt
@@ -20,6 +19,7 @@ public class QuizGameModel {
         }
     }
 
+    // Obsolete, maybe remove?
     // Constructor with list of questions
     public QuizGameModel(List<Question> questions) {
         for (Question question : questions) {
@@ -27,29 +27,75 @@ public class QuizGameModel {
         }
     }
 
-    // Fetch current question
+    // Fetch the current question
     public Question getCurrentQuestion() {
-        return questionMap.get(currentQuestionId + 1); // Adjusting to start from questionId 1
+        return questionMap.get(currentQuestionId);
     }
 
-    // Trivia for the current question
+    // Get current question ID
+    public int getCurrentQuestionId() {
+        return getCurrentQuestion().getQuestionId();
+    }
+
+    // Get current question text
+    public String getCurrentQuestionText() {
+        return getCurrentQuestion().getQuestionText();
+    }
+
+    // Get the answer alternatives of the current question
+    public ArrayList<String> getCurrentQuestionAnswers() {
+        return getCurrentQuestion().getAnswers();
+    }
+
+    // Fetch trivia for the current question
     public String getCurrentQuestionTrivia() {
-        Question currentQuestion = questionMap.get(currentQuestionId + 1);
+        Question currentQuestion = getCurrentQuestion();
         if (currentQuestion instanceof QuestionMultipleChoices) {
             return ((QuestionMultipleChoices) currentQuestion).getTrivia();
         }
         return "";
     }
 
+    // Get the correct answer for the current question
+    public String getCurrentQuestionCorrectAnswer() {
+        Question currentQuestion = getCurrentQuestion();
+        if (currentQuestion instanceof QuestionMultipleChoices) {
+            return ((QuestionMultipleChoices) currentQuestion).getCorrectAnswer();
+        }
+        return "";
+    }
+
+    public boolean checkAnswer(String userAnswer) {
+        return getCurrentQuestionCorrectAnswer().equals(userAnswer);
+    }
+
+    public void addScore() {
+        score++;
+    }
+
     // Proceed to the next question
     public void nextQuestion() {
-        if (questionMap.containsKey(currentQuestionId + 2)) {
+        if (questionMap.containsKey(currentQuestionId + 1)) {
             currentQuestionId++;
         }
+    }
 
-    public void setUsername(String username){
-        this.username = username;
+    // Returns the total amount of questions in the quiz
+    public int getTotalQuestions() {
+        return questionMap.size();
     }
+
+    // Checks whether the current quiz is finished
+    public boolean isFinished() {
+        return currentQuestionId >= questionMap.size() - 1;
     }
+
+    
+
+    // Sets the username
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+    
 }
 

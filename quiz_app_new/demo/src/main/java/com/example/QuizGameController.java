@@ -12,12 +12,13 @@ public class QuizGameController {
     private QuizGameView quizGameView;
 
     public QuizGameController(){
+        this.model = new QuizGameModel();
         this.loginView =new LoginView(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 if(loginView.getUsername() != null){
                     loginView.setVisible(false);
-                    model.setUsername(loginView.getUsername());
+                    model.setUserName(loginView.getUsername());
                     quizGameView = new QuizGameView(model);
                     
                 }
