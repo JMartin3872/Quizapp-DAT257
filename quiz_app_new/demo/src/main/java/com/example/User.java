@@ -4,13 +4,18 @@ public class User {
 
     private String userName;
     private int score;
+    private int correctAnswers;
+    private int wrongAnswers;
 
-    // Initializing a new user with user name and score = 0;
+    // Initializing a new user;
     public User(String userName) {
         this.userName = userName;
         this.score = 0;
+        this.correctAnswers = 0;
+        this.wrongAnswers = 0;
     }
-
+    
+    // Setters and getters
     public void setUserName(String userName) {
         this.userName = userName; 
     }
@@ -23,8 +28,21 @@ public class User {
         this.score = score;
     }
 
-    public void addScore(int score) {
-        this.score += score;
+    public void correctAnswer() {
+        this.correctAnswers++;
+        score++;
+    }
+
+    public void wrongAnswer() {
+        this.wrongAnswers++;
+    }
+
+    public int getCorrectAnswers() {
+        return correctAnswers;
+    }
+
+    public int getWrongAnswers() {
+        return wrongAnswers;
     }
 
     public int getScore() {

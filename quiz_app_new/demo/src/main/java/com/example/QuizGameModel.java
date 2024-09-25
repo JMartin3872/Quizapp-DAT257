@@ -7,6 +7,8 @@ public class QuizGameModel {
     private int currentQuestionId = 0; // Default to the first question
     private String userName;
     private int score = 0;
+    private int correctAnswers = 0;
+    private int wrongAnswers = 0;
 
 
     public QuizGameModel() {
@@ -69,10 +71,6 @@ public class QuizGameModel {
         return getCurrentQuestionCorrectAnswer().equals(userAnswer);
     }
 
-    public void addScore() {
-        score++;
-    }
-
     // Proceed to the next question
     public void nextQuestion() {
         if (questionMap.containsKey(currentQuestionId + 1)) {
@@ -95,6 +93,33 @@ public class QuizGameModel {
     // Sets the username
     public void setUserName(String userName){
         this.userName = userName;
+    }
+
+
+
+
+
+
+    // For now, these functions reside in the model. Will be moved to User class later
+    public void correctAnswer() {
+        this.correctAnswers++;
+        score++;
+    }
+
+    public void wrongAnswer() {
+        this.wrongAnswers++;
+    }
+
+    public int getCorrectAnswers() {
+        return correctAnswers;
+    }
+
+    public int getWrongAnswers() {
+        return wrongAnswers;
+    }
+
+    public int getScore() {
+        return score;
     }
     
 }
