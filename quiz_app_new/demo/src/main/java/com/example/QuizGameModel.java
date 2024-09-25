@@ -13,7 +13,7 @@ public class QuizGameModel {
     public QuizGameModel() {
         // QuestionReaderMultipleChoices used to read questions from  testQeustions.txt
         QuestionReaderMultipleChoices reader = new QuestionReaderMultipleChoices();
-        LinkedList<Question> questions = reader.read("testQuestions.txt");
+        LinkedList<Question> questions = reader.read("Questions.txt");
 
         for (Question question : questions) {
             questionMap.put(question.getQuestionId(), question);
