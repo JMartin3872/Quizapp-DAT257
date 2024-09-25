@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -10,9 +11,13 @@ public class QuizGameModel {
     private String username;
 
     public QuizGameModel() {
-        // temporary solution for multiple choice questions :)
-        questionMap.put(1, new QuestionMultipleChoices("What is the capital of France?", "Paris", "London", "Berlin", "Paris is known as the city of love.", 1));
-        questionMap.put(2, new QuestionMultipleChoices("What is the largest planet in our solar system?", "Jupiter", "Earth", "Mars", "Jupiter is a gas giant.", 2));
+        // QuestionReaderMultipleChoices used to read questions from  testQeustions.txt
+        QuestionReaderMultipleChoices reader = new QuestionReaderMultipleChoices();
+        LinkedList<Question> questions = reader.read("testQuestions.txt");
+
+        for (Question question : questions) {
+            questionMap.put(question.getQuestionId(), question);
+        }
     }
 
     // Constructor with list of questions
@@ -41,7 +46,7 @@ public class QuizGameModel {
         if (questionMap.containsKey(currentQuestionId + 2)) {
             currentQuestionId++;
         }
-    
+
     public void setUsername(String username){
         this.username = username;
     }

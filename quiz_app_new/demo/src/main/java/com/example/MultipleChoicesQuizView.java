@@ -22,7 +22,7 @@ public class MultipleChoicesQuizView {
         mainPanel = new JPanel(new BorderLayout());
         mainPanel.setPreferredSize(new Dimension(720, 480)); // Set preferred size for consistency
 
-        // Setup the UI
+        // Set up the UI
         setupUI();
 
         // Load the first question
@@ -105,7 +105,7 @@ public class MultipleChoicesQuizView {
         Question currentQuestion = model.getCurrentQuestion();
         if (currentQuestion == null) return;
 
-        questionLabel.setText("Question " + currentQuestion.getQuestionId() + ": " + currentQuestion.getQuestionText());
+        questionLabel.setText(currentQuestion.getQuestionText());
 
         // add answer buttons text
         for (int i = 0; i < currentQuestion.getAnswers().size(); i++) {
@@ -126,8 +126,8 @@ public class MultipleChoicesQuizView {
         String message; // used when printing correct! or wrong! answer
 
         if (currentQuestion.getAnswers().get(selectedAnswer).equals(currentQuestion.getCorrectAnswer())) {
-            message = "Correct!";
-        }
+            message = "Correct!";}
+
         else {
             message = "Wrong! The correct answer is: " + currentQuestion.getCorrectAnswer();
         }
