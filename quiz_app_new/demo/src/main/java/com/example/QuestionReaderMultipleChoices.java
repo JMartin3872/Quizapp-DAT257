@@ -8,32 +8,45 @@ public class QuestionReaderMultipleChoices implements QuestionReader {
 
     @Override
     public LinkedList<Question> read(String fileName) {
-        LinkedList<Question> result = new LinkedList<Question>();
+      
+      //Create an empty list which will hold the read questions
+      LinkedList<Question> result = new LinkedList<Question>();
 
-        try {
-            File questionFile = new File(fileName);
-            Scanner fileReader = new Scanner(questionFile);
-            int id = 0;
-            while (fileReader.hasNextLine()) {
-                String description = fileReader.nextLine();
-                String correctAnswer = fileReader.nextLine();
-                String wrongAnswer1 = fileReader.nextLine();
-                String wrongAnswer2 = fileReader.nextLine();
-                String trivia = fileReader.nextLine();
+      try {
+          // Open a new file and scanner
+          File questionFile = new File(fileName);
+          Scanner fileReader = new Scanner(questionFile);
+          
+          //While the file still has more questions, iterate over 5 lines at a time 
+          // and create a new question from it and add it to the list.
+          int id = 0;
+          while (fileReader.hasNextLine()) {
+              String description = fileReader.nextLine();
+              String correctAnswer = fileReader.nextLine();
+              String wrongAnswer1 = fileReader.nextLine();
+              String wrongAnswer2 = fileReader.nextLine();
+              String trivia = fileReader.nextLine();
 
-                result.add(new QuestionMultipleChoices(description, correctAnswer, wrongAnswer1, wrongAnswer2, trivia, id));
+              Question q = new QuestionMultipleChoices(description, correctAnswer, wrongAnswer1, wrongAnswer2, trivia, id);
 
-                id++;
-            }
+              //Shuffle answers
+              q.shuffleAnswers();
 
-            fileReader.close();
+              //Add to list
+              result.add(q);
 
-          } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+              //Increment id-value so the next question will get a unique id.
+              id++;
           }
 
-        return result;
+          fileReader.close();
+
+        } catch (FileNotFoundException e) {
+          System.out.println("An error occurred.");
+          e.printStackTrace();
+        }
+
+      return result;
     }
 
 }

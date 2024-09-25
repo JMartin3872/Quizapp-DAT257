@@ -9,7 +9,7 @@ public class QuestionMultipleChoices implements Question{
     //The question description
     private final String questionText;
     //An array of strings, containing the three alternative answers.
-    private final ArrayList <String> answers = new ArrayList<>();
+    private final ArrayList <String> answers = new ArrayList<String>();
     //The only correct answer to the question
     private final String correctAnswer;
     // The aha moment!
@@ -50,6 +50,10 @@ public class QuestionMultipleChoices implements Question{
 
     public String toString(){
         return questionText + "\n" + answers.get(0) + "\n" + answers.get(1) + "\n" + answers.get(2) + "\n" + trivia;
+    }
+
+    public void shuffleAnswers(){
+        Collections.shuffle(answers);
     }
 
 }
