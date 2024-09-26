@@ -62,8 +62,6 @@ public class MultipleChoicesSummaryView extends JPanel {
                 
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run(){
-
-                    System.out.println("Update");
                     progressPanel.UpdateProgress(proportionCorrect());
                     progressPanel.repaint();
 
