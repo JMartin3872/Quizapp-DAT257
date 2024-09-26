@@ -7,4 +7,6 @@ public interface Question {
     public String getQuestionText();
     public ArrayList<String> getAnswers();
     public void shuffleAnswers();
+    public String getTrivia();
+    public String getCorrectAnswer();
 }
