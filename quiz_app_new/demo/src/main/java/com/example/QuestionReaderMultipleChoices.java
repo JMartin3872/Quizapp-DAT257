@@ -7,7 +7,7 @@ import java.io.*;
 public class QuestionReaderMultipleChoices implements QuestionReader {
 
     @Override
-    public LinkedList<Question> read(String fileName) {
+    public LinkedList<Question> readQuestionFile(String fileName) {
       
       //Create an empty list which will hold the read questions
       LinkedList<Question> result = new LinkedList<Question>();
