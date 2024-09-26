@@ -143,10 +143,10 @@ public class MultipleChoicesQuizView {
         String message; // used when printing correct! or wrong! answer
 
         if (currentQuestion.getAnswers().get(selectedAnswer).equals(currentQuestion.getCorrectAnswer())) {
-            message = "Correct!";}
+            message = "Correct!" + "\n" + currentQuestion.getTrivia();}
 
         else {
-            message = "Wrong! The correct answer is: " + currentQuestion.getCorrectAnswer();
+            message = "Wrong! The correct answer is: " + currentQuestion.getCorrectAnswer() + "\n" + currentQuestion.getTrivia();
         }
 
         // Display answer correctness, name the frame "Result"
