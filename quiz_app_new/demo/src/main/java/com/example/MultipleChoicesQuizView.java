@@ -14,8 +14,25 @@ public class MultipleChoicesQuizView {
     private JButton submitButton;
     private QuizGameModel model;
     private int selectedAnswer = -1; // track the selected answer
+    private QuizGameView quizGameView;
+    private boolean questionsAnswered = false;
 
     public MultipleChoicesQuizView() {
+        model = new QuizGameModel();
+
+        // Create the main panel instead of a JFrame
+        mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setPreferredSize(new Dimension(720, 480)); // Set preferred size for consistency
+
+        // Set up the UI
+        setupUI();
+
+        // Load the first question
+        loadQuestion();
+    }
+
+    public MultipleChoicesQuizView(QuizGameView quizGameView) {
+        this.quizGameView = quizGameView;
         model = new QuizGameModel();
 
         // Create the main panel instead of a JFrame
@@ -135,10 +152,27 @@ public class MultipleChoicesQuizView {
         // Display answer correctness, name the frame "Result"
         JOptionPane.showMessageDialog(mainPanel, message, "Result", JOptionPane.INFORMATION_MESSAGE);
 
+        Question q = model.getCurrentQuestion();
+
         model.nextQuestion();
         loadQuestion();
         selectedAnswer = -1; // reset selected answer
 
+        if (q.equals(model.getCurrentQuestion())){          // When all question has been answered open SummaryView
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    questionsAnswered = true;
+                    checkAllQuestionsAnswered();
+                }
+            });
+        }
+
         resetButtonBackgrounds(); // make all button backgrounds white when new question
+    }
+
+    private void checkAllQuestionsAnswered(){
+        if (questionsAnswered){
+            quizGameView.showMultipleChoiseSummaryView();
+        }
     }
 }

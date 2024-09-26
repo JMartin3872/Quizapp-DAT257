@@ -114,7 +114,7 @@ public class QuizGameView {
         mainPanel.add(questionPanel, "Quiz");
         gbc.gridy = 0;
 
-        MultipleChoicesQuizView mcqView = new MultipleChoicesQuizView(); // Create an instance of MultipleChoicesQuizView
+        MultipleChoicesQuizView mcqView = new MultipleChoicesQuizView(this); // Create an instance of MultipleChoicesQuizView
         mainPanel.add(mcqView.getPanel(), "MultipleChoice"); // Add the panel to CardLayout
         gbc.gridy = 2;
 
@@ -122,6 +122,10 @@ public class QuizGameView {
         toMCQ.setFont(new Font("Arial", Font.BOLD, 24));
         questionPanel.add(toMCQ, gbc);
         // Creating the MultipleChoicesQuizView panel
+
+
+        MultipleChoicesSummaryView mcsView = new MultipleChoicesSummaryView();
+        mainPanel.add(mcsView, "MultipleChoiseSummary");
 
 
         // Add ActionListeners to the buttons to switch between panels
@@ -189,5 +193,9 @@ public class QuizGameView {
                 menuPanel.repaint();
             }
         });
+    }
+
+    public void showMultipleChoiseSummaryView(){
+        cardLayout.show(mainPanel, "MultipleChoiseSummary");
     }
 }
