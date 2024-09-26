@@ -265,7 +265,11 @@ public class MultipleChoicesSummaryView extends JPanel {
         panel.setBackground(new Color(80,100,230));
 
         DefaultTableModel model = createTableData();
-        JTable table = new JTable(model);
+        JTable table = new JTable(model) {
+            public boolean editCellAt(int row, int coloum, java.util.EventObject e){
+                return false;
+            }
+        };
 
 
         table.setRowHeight(30);  // Set row height
@@ -280,6 +284,7 @@ public class MultipleChoicesSummaryView extends JPanel {
         header.setFont(new Font("SansSerif", Font.BOLD, 16));
         header.setBackground(new Color(80,100,230));
         header.setForeground(Color.WHITE);
+        header.setReorderingAllowed(false); // Disable reordering headers
 
 
         // Paints every other row darker for better visability. 
