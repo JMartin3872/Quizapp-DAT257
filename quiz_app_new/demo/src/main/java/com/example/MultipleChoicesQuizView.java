@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class MultipleChoicesQuizView {
 
     private JPanel mainPanel; // JPanel instead of JFrame
-    private JLabel questionLabel;
+    private JTextArea questionTextarea;
     private JButton[] answerButtons = new JButton[3];
     private JButton submitButton;
     private QuizGameModel model;
@@ -54,9 +54,17 @@ public class MultipleChoicesQuizView {
     private void setupUI() { // component setup
         // question label in the center of the panel
         JPanel questionPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        questionLabel = new JLabel();
-        questionLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        questionPanel.add(questionLabel);
+        
+        //changed from label to Textarea so that the entire question-text is visible without resizing the window
+        questionTextarea = new JTextArea();
+        questionTextarea.setFont(new Font("Arial", Font.BOLD, 24));
+        questionTextarea.setEditable(false);
+        questionTextarea.setLineWrap(true);
+        questionTextarea.setWrapStyleWord(true);
+        questionTextarea.setColumns(20);
+        questionTextarea.setRows(5);
+
+        questionPanel.add(questionTextarea);
         mainPanel.add(questionPanel, BorderLayout.NORTH); // Add the panel to the top
 
         questionPanel.setBorder(new EmptyBorder(30, 0, 0, 0));
@@ -122,7 +130,7 @@ public class MultipleChoicesQuizView {
         Question currentQuestion = model.getCurrentQuestion();
         if (currentQuestion == null) return;
 
-        questionLabel.setText(currentQuestion.getQuestionText());
+        questionTextarea.setText(currentQuestion.getQuestionText());
 
         // add answer buttons text
         for (int i = 0; i < currentQuestion.getAnswers().size(); i++) {
@@ -143,14 +151,20 @@ public class MultipleChoicesQuizView {
         String message; // used when printing correct! or wrong! answer
 
         if (currentQuestion.getAnswers().get(selectedAnswer).equals(currentQuestion.getCorrectAnswer())) {
-            message = "Correct!";}
+            message = "Correct!" + "\n\n" + currentQuestion.getTrivia();}
 
         else {
-            message = "Wrong! The correct answer is: " + currentQuestion.getCorrectAnswer();
+            message = "Wrong! The correct answer is: " + currentQuestion.getCorrectAnswer() + "\n\n" + currentQuestion.getTrivia();
         }
 
-        // Display answer correctness, name the frame "Result"
-        JOptionPane.showMessageDialog(mainPanel, message, "Result", JOptionPane.INFORMATION_MESSAGE);
+        // Display answer correctness
+        // changed from one line in dialogbox to several lines
+        JTextArea msg = new JTextArea(message);
+        msg.setLineWrap(true);
+        msg.setWrapStyleWord(true);
+        JScrollPane scrollPane = new JScrollPane(msg);
+        UIManager.put("OptionPane.minimumSize",new Dimension(300, 250));  
+        JOptionPane.showMessageDialog(mainPanel, scrollPane);
 
         Question q = model.getCurrentQuestion();
 
