@@ -111,7 +111,7 @@ public class QuizGameView {
         JPanel questionPanel = new JPanel();
         questionPanel.setLayout(new GridBagLayout());
         questionPanel.setBackground(new Color(255, 255, 0 )); // different background color
-        mainPanel.add(questionPanel, "Quiz");
+        mainPanel.add(questionPanel, "Question");
         gbc.gridy = 0;
 
         MultipleChoicesQuizView mcqView = new MultipleChoicesQuizView(this); // Create an instance of MultipleChoicesQuizView
@@ -124,6 +124,19 @@ public class QuizGameView {
         // Creating the MultipleChoicesQuizView panel
 
 
+        //TODO uncomment when class for a TrueFalseQuizView has been added
+/* 
+        // Creating an instance of TrueFalseQuizView
+        TrueFalseQuizView tfView = new TrueFalseQuizView(this);
+        mainPanel.add(tfView.getPanel(), "TrueFalse") // Add the panel to CardLayout
+        gbc.gridy = 4;
+*/
+
+        // Button for True or False Quiz
+        JButton toTF = new JButton("True Or False");
+        toTF.setFont(new Font("Arial", Font.BOLD, 24));
+        questionPanel.add(toTF, gbc);
+
         MultipleChoicesSummaryView mcsView = new MultipleChoicesSummaryView();
         mainPanel.add(mcsView, "MultipleChoiseSummary");
 
@@ -132,7 +145,7 @@ public class QuizGameView {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(mainPanel, "Quiz"); // switch to the Quiz panel
+                cardLayout.show(mainPanel, "Question"); // switch to the Quiz panel
                 //for sprint 1
                 //frame.remove(mainPanel);
                 //frame.add(secondPanel);
@@ -158,6 +171,13 @@ public class QuizGameView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(mainPanel, "MultipleChoice"); // Switch to the Multiple Choice Questions panel
+            }
+        });
+
+        toTF.addActionListener(new ActionListener () {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(mainPanel, "TrueFalse"); // Switch to the True Or False Question Panel
             }
         });
 
