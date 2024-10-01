@@ -22,7 +22,7 @@ public class QuizGameView {
         // init. frame and UI components
         frame = new JFrame("Quiz Game Menu");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(720, 480);
+        frame.setSize(1000, 720);
 
         // Setup the UI
         setupUI();

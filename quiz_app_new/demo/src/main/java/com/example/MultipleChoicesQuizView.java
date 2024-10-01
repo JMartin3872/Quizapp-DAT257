@@ -62,7 +62,7 @@ public class MultipleChoicesQuizView {
         questionTextarea.setEditable(false);
         questionTextarea.setLineWrap(true);
         questionTextarea.setWrapStyleWord(true);
-        questionTextarea.setColumns(20);
+        questionTextarea.setColumns(30);
         questionTextarea.setRows(5);
 
         questionPanel.add(questionTextarea);
