@@ -16,6 +16,7 @@ public class MultipleChoicesQuizView {
     private int selectedAnswer = -1; // track the selected answer
     private QuizGameView quizGameView;
     private boolean questionsAnswered = false;
+    private boolean isAnswerSubmitted = false; // Track whether the answer has been submitted
 
     public MultipleChoicesQuizView() {
         model = new QuizGameModel();
@@ -54,7 +55,7 @@ public class MultipleChoicesQuizView {
     private void setupUI() { // component setup
         // question label in the center of the panel
         JPanel questionPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        
+
         //changed from label to Textarea so that the entire question-text is visible without resizing the window
         questionTextarea = new JTextArea();
         questionTextarea.setFont(new Font("Arial", Font.BOLD, 24));
@@ -103,7 +104,11 @@ public class MultipleChoicesQuizView {
 
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                if (submitButton.getText().equals("Next Question")){
+                    handleNextQ();
+                }else{
                 handleSubmit(); // Soon to be added! responsible for everything that happens after the user answers the question
+                }
             }
         });
         mainPanel.add(submitButton, BorderLayout.SOUTH);
@@ -151,37 +156,41 @@ public class MultipleChoicesQuizView {
         String message; // used when printing correct! or wrong! answer
 
         if (currentQuestion.getAnswers().get(selectedAnswer).equals(currentQuestion.getCorrectAnswer())) {
-            message = "Correct!" + "\n\n" + currentQuestion.getTrivia();}
-
-        else {
+            message = "Correct!" + "\n\n" + currentQuestion.getTrivia();
+            questionTextarea.setBackground(Color.green);
+        } else {
             message = "Wrong! The correct answer is: " + currentQuestion.getCorrectAnswer() + "\n\n" + currentQuestion.getTrivia();
+            questionTextarea.setBackground(Color.red);
         }
 
-        // Display answer correctness
-        // changed from one line in dialogbox to several lines
-        JTextArea msg = new JTextArea(message);
-        msg.setLineWrap(true);
-        msg.setWrapStyleWord(true);
-        JScrollPane scrollPane = new JScrollPane(msg);
-        UIManager.put("OptionPane.minimumSize",new Dimension(300, 250));  
-        JOptionPane.showMessageDialog(mainPanel, scrollPane);
+        // Display the message in the text area
+        questionTextarea.setText(message);
 
-        Question q = model.getCurrentQuestion();
+        // Change submit button to "Next Question"
+        submitButton.setText("Next Question");
+        isAnswerSubmitted = true; // Mark that the answer was submitted
 
-        model.nextQuestion();
+    }
+    private void handleNextQ(){
+        questionTextarea.setBackground(Color.white);
+        // Check if the current question was the last one before advancing.
+        Question currentQuestion = model.getCurrentQuestion();
+        model.nextQuestion(); // Move to the next question
+
+        if (model.getCurrentQuestion() == currentQuestion) {
+            // If the current question remains the same, it means we're at the end of the quiz.
+            questionsAnswered = true;
+            checkAllQuestionsAnswered();
+            return; // Exit the method to avoid looping back to the same question.
+        }
+
+        // Load the next question if available
         loadQuestion();
-        selectedAnswer = -1; // reset selected answer
+        resetButtonBackgrounds(); // Reset button backgrounds for new question
+        selectedAnswer = -1; // Reset selected answer
+        isAnswerSubmitted = false; // Reset submission state
+        submitButton.setText("Submit Answer"); // Revert button text to "Submit Answer"
 
-        if (q.equals(model.getCurrentQuestion())){          // When all question has been answered open SummaryView
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    questionsAnswered = true;
-                    checkAllQuestionsAnswered();
-                }
-            });
-        }
-
-        resetButtonBackgrounds(); // make all button backgrounds white when new question
     }
 
     private void checkAllQuestionsAnswered(){
