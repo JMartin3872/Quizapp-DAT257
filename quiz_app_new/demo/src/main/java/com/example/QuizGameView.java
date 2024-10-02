@@ -124,12 +124,12 @@ public class QuizGameView {
 
         
         // TODO uncomment when class for a TrueFalseQuizView has been added
-/* 
+
         // Creating an instance of TrueFalseQuizView
         TrueFalseQuizView tfqView = new TrueFalseQuizView(this);
-        mainPanel.add(tfqView.getPanel(), "TrueFalse") // Add the panel to CardLayout
+        mainPanel.add(tfqView.getPanel(), "TrueFalse"); // Add the panel to CardLayout
         gbc.gridy = 2;
-*/
+
 
         
         // Creating and adding the panel for Multiple Choice Quiz Info to CardLayout Container
@@ -177,7 +177,7 @@ public class QuizGameView {
         // Text area and button for switching to True Or False Quiz View
         JButton toTFQ = new JButton("Next");
         toTFQ.setFont(new Font("Arial", Font.BOLD, 24));
-        JTextArea tfInfo = new JTextArea(model.getMCQuizInfo);
+        JTextArea tfInfo = new JTextArea(model.getMCQuizInfo());
         tfInfo.setPreferredSize(new Dimension(500, 300));
         tfInfo.setBackground(Color.ORANGE);
         tfInfo.setFont(new Font("Arial", Font.BOLD, 24));
