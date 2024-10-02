@@ -46,4 +46,8 @@ public class QuestionTrueFalse implements Question{
         return this.correctAnswer;
 
     }
+
+    public String toString(){
+        return questionText + "\n" + answers.get(0) + "\n" + answers.get(1) + "\n" + trivia;
+    }
 }

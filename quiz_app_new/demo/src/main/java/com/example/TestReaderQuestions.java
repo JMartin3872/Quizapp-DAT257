@@ -8,8 +8,8 @@ public class TestReaderQuestions {
     
 
     public static void main(String[] args) {
-        QuestionReaderMultipleChoices reader = new QuestionReaderMultipleChoices();
-        LinkedList<Question> questions = reader.readQuestionFile("Questions.txt");
+        QuestionReaderTrueFalse reader = new QuestionReaderTrueFalse();
+        LinkedList<Question> questions = reader.readQuestionFile("True-False-Questions.txt");
         for(Question question : questions){
             System.out.println(question.toString());
         }

@@ -177,7 +177,7 @@ public class QuizGameView {
         // Text area and button for switching to True Or False Quiz View
         JButton toTFQ = new JButton("Next");
         toTFQ.setFont(new Font("Arial", Font.BOLD, 24));
-        JTextArea tfInfo = new JTextArea(model.getTFQuizInfo());
+        JTextArea tfInfo = new JTextArea(model.getMCQuizInfo);
         tfInfo.setPreferredSize(new Dimension(500, 300));
         tfInfo.setBackground(Color.ORANGE);
         tfInfo.setFont(new Font("Arial", Font.BOLD, 24));
