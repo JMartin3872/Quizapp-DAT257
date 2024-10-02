@@ -92,6 +92,7 @@ public class TrueFalseQuizView {
             public void actionPerformed(ActionEvent e) {
                 modeltf.nextQuestion();
                 loadQuestion();
+                questionTextarea.setBackground(Color.WHITE);
                 nextQuestionButton.setEnabled(false);  // Disable next question button until answered
             }
         });
@@ -122,13 +123,15 @@ public class TrueFalseQuizView {
         if (isCorrect) {
             modeltf.correctAnswer();  // Update score for correct answer
             message = "Correct! \n" + modeltf.getCurrentQuestionTrivia();
+            questionTextarea.setBackground(Color.green);
         } else {
             modeltf.wrongAnswer();
             message = "Wrong! The correct answer is: " + modeltf.getCurrentQuestionCorrectAnswer() + "\n" + modeltf.getCurrentQuestionTrivia();
+            questionTextarea.setBackground(Color.red);
         }
 
         // Show trivia and feedback in a message dialog
-        JOptionPane.showMessageDialog(mainPanel, message);
+        questionTextarea.setText(message);
 
         // Enable next question button after answering
         nextQuestionButton.setEnabled(true);
