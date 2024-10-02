@@ -130,7 +130,7 @@ public class QuizGameView {
         gbc.gridy = 2;
 
 
-        
+
         // Creating and adding the panel for Multiple Choice Quiz Info to CardLayout Container
         JPanel mcInfoPanel = new JPanel();
         mcInfoPanel.setLayout(new GridBagLayout());
@@ -197,7 +197,7 @@ public class QuizGameView {
 
 
 
-        MultipleChoicesSummaryView mcsView = new MultipleChoicesSummaryView();
+        MultipleChoicesSummaryView mcsView = new MultipleChoicesSummaryView(this);
         mainPanel.add(mcsView, "MultipleChoiseSummary");
 
 
@@ -293,4 +293,8 @@ public class QuizGameView {
         cardLayout.show(mainPanel, "MultipleChoiseSummary");
     }
 
+    public Container backToMenu(){
+        cardLayout.show(mainPanel, "Question");
+        return null;
+    }
 }

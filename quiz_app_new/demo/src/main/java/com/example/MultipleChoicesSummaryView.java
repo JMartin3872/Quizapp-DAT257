@@ -30,10 +30,12 @@ public class MultipleChoicesSummaryView extends JPanel {
     private DefaultTableModel dataModel;
 
     private QuizGameModel m;
+    private QuizGameView quizGameView;
 
     private Boolean animation = false;
 
-    public MultipleChoicesSummaryView() {
+    public MultipleChoicesSummaryView(QuizGameView quizGameView) {
+        this.quizGameView = quizGameView;
         setSize(720, 480);
         setBackground(new Color(80,100,230));
         // Set up the UI
@@ -139,14 +141,22 @@ public class MultipleChoicesSummaryView extends JPanel {
             controlPanel.setVisible(false);
         }
 
+        JButton returnToMenuButton = new JButton("Return to Menu");
+        returnToMenuButton.setBackground(Color.RED);
+        returnToMenuButton.setForeground(Color.WHITE);
+        returnToMenuButton.setFont(new Font("Verdana", Font.BOLD, 14));
+
         showResultButton.addActionListener(e -> {cardLayout.show(cardPanel, "Menu");});
         reviewResultButton.addActionListener(e -> cardLayout.show(cardPanel, "Review"));
+        returnToMenuButton.addActionListener(e -> cardLayout.show(quizGameView.backToMenu(), "Return to Menu"));
+
 
         controlPanel.setBackground(new Color(80,100,230));
         controlPanel.setPreferredSize(new Dimension(720,120));
 
         controlPanel.add(showResultButton);
         controlPanel.add(reviewResultButton);
+        controlPanel.add(returnToMenuButton);
 
 
         setLayout(new BorderLayout());
@@ -424,6 +434,16 @@ public class MultipleChoicesSummaryView extends JPanel {
         panel.add(tablePanel, BorderLayout.CENTER);
         panel.add(new JScrollPane(questionTextArea), BorderLayout.EAST);
         return panel;
+
+
+    }
+    public JPanel getPanel() {
+        return cardPanel; // Return the panel to be added to the CardLayout
+    }
+
+    // Set the CardLayout reference (optional if you manage it differently)
+    public void setCardLayout(CardLayout cardLayout) {
+        this.cardLayout = cardLayout;
     }
 }
 
