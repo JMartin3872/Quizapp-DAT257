@@ -14,11 +14,6 @@ public class QuizGameModel {
         + "You are tasked with selecting the correct amount of carbon dioxide equivalents (kg) the following emit.\n\n"
         + "Select your answer and press \"Submit Answer\".";
 
-    private String trueOrFalseInfo = "This quiz presents you with true or false questions.\n\n"
-        + "You are tasked with selecting the correct answer.\n\n"
-        + "Select your answer and press \"Submit Answer\".";
-
-
     public QuizGameModel() {
         // QuestionReaderMultipleChoices used to read questions from  testQeustions.txt
         QuestionReaderMultipleChoices reader = new QuestionReaderMultipleChoices();
@@ -99,11 +94,6 @@ public class QuizGameModel {
     // Gets info about Multiple Choice quiz
     public String getMCQuizInfo() {
         return multipleChoiceInfo;
-    }
-
-    // Gets info about True or False quiz
-    public String getTFQuizInfo() {
-        return trueOrFalseInfo;
     }
 
     // Sets the username
