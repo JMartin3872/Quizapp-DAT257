@@ -7,19 +7,22 @@ import java.util.List;
 
 public class QuizGameController {
 
-    private QuizGameModel model;
+    private QuizGameModel multipleChoiceModel;
+    private ModelTrueFalse trueFalseModel;
     private LoginView loginView;
     private QuizGameView quizGameView;
 
     public QuizGameController(){
-        this.model = new QuizGameModel();
+        this.multipleChoiceModel = new QuizGameModel();
+        this.trueFalseModel = new ModelTrueFalse();
+
         this.loginView =new LoginView(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
                 if(loginView.getUsername() != null){
                     loginView.setVisible(false);
-                    model.setUserName(loginView.getUsername());
-                    quizGameView = new QuizGameView(model);
+                    multipleChoiceModel.setUserName(loginView.getUsername());
+                    quizGameView = new QuizGameView(multipleChoiceModel);
                     
                 }
                 
