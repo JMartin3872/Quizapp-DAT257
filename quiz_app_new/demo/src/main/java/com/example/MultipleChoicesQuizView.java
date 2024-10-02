@@ -100,6 +100,7 @@ public class MultipleChoicesQuizView {
         // Create submit button
         submitButton = new JButton("Submit Answer");
         submitButton.setFont(new Font("Arial", Font.BOLD, 20));
+        submitButton.setBackground(Color.WHITE);
         submitButton.setPreferredSize(new Dimension(150, 50));
 
         submitButton.addActionListener(new ActionListener() {
