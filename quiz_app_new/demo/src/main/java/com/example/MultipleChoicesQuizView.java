@@ -85,6 +85,7 @@ public class MultipleChoicesQuizView {
             answerButtons[i].setFont(new Font("Arial", Font.PLAIN, 18));
             answerButtons[i].setPreferredSize(new Dimension(300, 65));
             answerButtons[i].setBackground(Color.WHITE);
+            answerButtons[i].setFocusPainted(false);
             final int index = i; // for use in action listener
             answerButtons[i].addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -102,6 +103,7 @@ public class MultipleChoicesQuizView {
         submitButton.setFont(new Font("Arial", Font.BOLD, 20));
         submitButton.setBackground(Color.WHITE);
         submitButton.setPreferredSize(new Dimension(150, 50));
+        submitButton.setFocusPainted(false);
 
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

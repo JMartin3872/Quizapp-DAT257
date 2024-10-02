@@ -54,8 +54,12 @@ public class TrueFalseQuizView {
 
         trueButton = new JButton("True");
         falseButton = new JButton("False");
+        trueButton.setFocusPainted(false);
+        falseButton.setFocusPainted(false);
         trueButton.setBackground(Color.WHITE);
+        trueButton.setFont(new Font("Arial", Font.PLAIN, 18));
         falseButton.setBackground(Color.WHITE);
+        falseButton.setFont(new Font("Arial", Font.PLAIN, 18));
 
         gbc.gridy = 0;
         gbc.gridx = 0;
@@ -85,7 +89,9 @@ public class TrueFalseQuizView {
 
         nextQuestionButton = new JButton("Next Question");
         nextQuestionButton.setEnabled(false);  // Initially disabled
+        nextQuestionButton.setFocusPainted(false);
         nextQuestionButton.setBackground(Color.WHITE);
+        nextQuestionButton.setFont(new Font("Arial", Font.BOLD, 20));
         nextQuestionButton.setPreferredSize(new Dimension(400, 65));
         nextQuestionButton.addActionListener(new ActionListener() {
             @Override
