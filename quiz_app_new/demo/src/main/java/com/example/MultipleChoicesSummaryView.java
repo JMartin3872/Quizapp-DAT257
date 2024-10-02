@@ -23,28 +23,49 @@ public class MultipleChoicesSummaryView extends JPanel {
     private JPanel startPanel;
     private JPanel menuPanel;
     private JPanel cardPanel;
-    private JPanel reviewPanel;
-    private int incorrectAnswers = 6;   
-    private int correctAnswers = 4;     
-    private int questionsAnswered = 10;  
+    private JPanel reviewPanel; 
     private JTextArea questionTextArea;
+
+
+    private DefaultTableModel dataModel;
+
+    private QuizGameModel m;
 
     private Boolean animation = false;
 
     public MultipleChoicesSummaryView() {
         setSize(720, 480);
         setBackground(new Color(80,100,230));
+        // Set up the UI
         setupUI();
         add(cardPanel);
         setVisible(true);
     }
 
+    // fetch the correct amount of answers the user got
+    private int getCorrectAnswers(){
+        QuizGameModel m = new QuizGameModel();
+        String userName = m.getUserName();
+        User user = User.getInstance(userName);
+        return user.getCorrectAnswers();
+    }
+
+    // fetch the incorrect amount of answers the user got
+    private int getIncorrectAnswers(){
+        QuizGameModel m = new QuizGameModel();
+        String userName = m.getUserName();
+        User user = User.getInstance(userName);
+        return user.getWrongAnswers();
+    }
+
+    // returns the proportion of correct answers
     private int proportionCorrect(){
-        float totalquestions = incorrectAnswers + correctAnswers;
-        float procent = (correctAnswers/totalquestions)*100;
+        float totalquestions = getCorrectAnswers() + getIncorrectAnswers();
+        float procent = (getCorrectAnswers()/totalquestions)*100;
         return (int) procent;
     }
 
+    // runs the animation and updates the data to match the final result
     private void startProgress() { 
         new Thread(new Runnable() {
             @Override
@@ -60,6 +81,7 @@ public class MultipleChoicesSummaryView extends JPanel {
                     }
                 }
                 
+                // Updates the view
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run(){
                     progressPanel.UpdateProgress(proportionCorrect());
@@ -69,6 +91,10 @@ public class MultipleChoicesSummaryView extends JPanel {
 
                     feedbackPanel.setVisible(true);
                     topLabel.setForeground(progressPanel.getColor());
+                    topLabel.setText(feedbackMessage(proportionCorrect()));
+                    int total = getCorrectAnswers() + getIncorrectAnswers();
+                    bottomLabel.setText("You scored " + getCorrectAnswers() + " out of " +  total + " ");
+                    updateTable();
                     controlPanel.setVisible(true);
                     cardPanel.revalidate();
                     cardPanel.repaint();
@@ -93,10 +119,13 @@ public class MultipleChoicesSummaryView extends JPanel {
         cardPanel.add(reviewPanel, "Review");
 
         feedbackPanel = createFeedbackPanel();
+
+        // Makes sure the animation only runs once
         if (!animation){
             feedbackPanel.setVisible(false);
         }
 
+        // create the button panel below to navigate through the different panels
         controlPanel = new JPanel(new FlowLayout(FlowLayout.CENTER,10,30));
         JButton showResultButton = new JButton("Show Result");
         showResultButton.setFont(new Font("Verdana", Font.BOLD, 14));
@@ -131,14 +160,8 @@ public class MultipleChoicesSummaryView extends JPanel {
         setVisible(true);
     }
 
-
-    private JPanel createFeedbackPanel(){
+    private String feedbackMessage(int proportion){
         String topText;
-        int topFontSize = 34;
-        int bottomFontSize = 18;
-        String bottomText = "You scored " + correctAnswers + " out of " +  questionsAnswered + " ";
-
-        int proportion = proportionCorrect();
         if (proportion > 90){
             topText = "Excellent Job!";
         } else if (proportion >= 80 && proportion < 90){
@@ -152,6 +175,19 @@ public class MultipleChoicesSummaryView extends JPanel {
         } else {
             topText = "Unkown";
         }
+        return topText;
+    }
+
+    // Create the top panel that displays a text and how many correct answers you got
+    private JPanel createFeedbackPanel(){
+        String topText;
+        int topFontSize = 34;
+        int bottomFontSize = 18;
+        int correct = getCorrectAnswers();
+        int total = getCorrectAnswers() + getIncorrectAnswers();
+        String bottomText = "You scored " + correct + " out of " +  total + " ";
+
+        topText = feedbackMessage(proportionCorrect());
 
         topLabel = new JLabel(topText, JLabel.CENTER);
         topLabel.setForeground(progressPanel.getColor());
@@ -173,6 +209,8 @@ public class MultipleChoicesSummaryView extends JPanel {
         return panel;
 
     }
+
+    // Create the first panel that just shows view result button to start the animation
     private JPanel createStartPanel() {
         JPanel panel = new JPanel();
         panel.setBackground(new Color(80,100,230));
@@ -205,6 +243,7 @@ public class MultipleChoicesSummaryView extends JPanel {
         return panel;
     }
 
+    // Create the panel that just shows the propersition of correct answers by a round progressbar
     private JPanel createMenuPanel() {
         JPanel panel = new JPanel();
         progressPanel = new ProgressPanel();
@@ -228,34 +267,52 @@ public class MultipleChoicesSummaryView extends JPanel {
         return panel;
     }
 
+    private void updateTable(){
+        QuizGameModel m = new QuizGameModel();
+
+        String userName = m.getUserName();
+        User user = User.getInstance(userName);
+        dataModel.setRowCount(0); // removes all rows
+        for (int i = 0; i < m.getTotalQuestions(); i++){
+            String userAnswer;
+            String correctAnswer = m.getQuestionCorrectAnswer(i);
+            if (user.getHistory().get(i) == null){
+                userAnswer = "No Answer";
+            } else {
+                userAnswer = user.getHistory().get(i);
+            }
+            Object[] rowData = {m.getQuestionText(i), correctAnswer, userAnswer, userAnswer.equals(correctAnswer) ? "✔" : "✘"};
+            dataModel.addRow(rowData);
+        }
+    }
+
     private DefaultTableModel createTableData(){
         String[] columnNames = {"Question", "Correct Answer", "Your Answer", "Result"};
 
-        // Data for the table, Change to getting data from model
+        QuizGameModel m = new QuizGameModel();
 
-        Object[][] data = {
-            {"Train Journey: Stockholm - Gothenburg. A round trip totaling 900 km by high-speed train."
-            , "5KG", "5KG", "✔"},
-            {"Cheese Sandwiches: Two cheese sandwiches with butter every day for a year."
-            , "250KG", "200KG", "✘"},
-            {"Watching TV: 4 hours a day. Having your 65-inch TV on for 4 hours a day for a year."
-            , "40 KG", "40KG", "✔"},
-            {"Package Delivery: By air from China. Shipping a package (25 liters) of, for example, clothes bought online once a month for a year."
-            , "250KG", "300KG", "✘"},
-            {"Heating an Apartment: Heating a 70 m² apartment in central Sweden with district heating."
-            , "600KG", "300KG", "✘"},
-            {"Halved Food Waste: Reduced emissions from halving food waste over a year for an average Swede."
-            , "200KG", "200KG", "✔"},
-            {"Heating with Electric Heaters: Heating a 140 m² house in central Sweden with direct electric heating (Swedish electricity mix)."
-            , "700KG", "500KG", "✘"},
-            {"Flights: Swedish yearly average. Flying as an average Swede over a year (CO₂ only)."
-            , "600KG", "600KG", "✔"},
-            {"T-bone Steak: Beef. A meal with 150g of beef every day for a year."
-            , "3000KG", "2000KG", "✘"},
-            {"Hand Washing Dishes: Using filled water. Washing dishes with filled water from district heating every day for a year."
-            , "400KG", "450KG", "✘"}
-        };
+        String userName = m.getUserName();
+        User user = User.getInstance(userName);
 
+        Object[][] data = new Object[m.getTotalQuestions()-1][4];
+
+        for (int i = 0; i < data.length; i++){
+            String userAnswer;
+            String correctAnswer = m.getQuestionCorrectAnswer(i);
+            data[i][0] = m.getQuestionText(i);
+            data[i][1] = correctAnswer;
+            if (user.getHistory().get(i) == null){
+                userAnswer = "No Answer";
+            } else {
+                userAnswer = user.getHistory().get(i);
+            }
+            data[i][2] = userAnswer;
+            if (userAnswer.equals(correctAnswer)){
+                data[i][3] = "✔";
+            } else {
+                data[i][3] = "✘";
+            }
+        }
         return new DefaultTableModel(data, columnNames);
     }
 
@@ -264,8 +321,8 @@ public class MultipleChoicesSummaryView extends JPanel {
         panel.setLayout(new BorderLayout(10,10));
         panel.setBackground(new Color(80,100,230));
 
-        DefaultTableModel model = createTableData();
-        JTable table = new JTable(model) {
+        dataModel = createTableData();
+        JTable table = new JTable(dataModel) {
             public boolean editCellAt(int row, int coloum, java.util.EventObject e){
                 return false;
             }
@@ -331,14 +388,17 @@ public class MultipleChoicesSummaryView extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int selectedRow = table.getSelectedRow();
+                QuizGameModel m = new QuizGameModel();
                 if (selectedRow != -1) {
                     String fullQuestion = (String) table.getValueAt(selectedRow, 0);
+                    QuestionMultipleChoices selectedQuestion = (QuestionMultipleChoices) m.getQuestion(selectedRow);
+                    String trivia = selectedQuestion.getTrivia();
                     String fullRespons = fullQuestion + "\n" + "You answered " + table.getValueAt(selectedRow, 1) + 
                     "\n" + "The correct answer was: " + table.getValueAt(selectedRow, 2) + 
-                    "\n" + "Addition information";
+                    "\n\n" + trivia;
                     if ("✔".equals(table.getValueAt(selectedRow, 3))){
                         fullRespons = fullQuestion + "\n" + "You answered " + table.getValueAt(selectedRow, 1) + 
-                        "\n" + "You were correct!" + "\n" + "Addition information";
+                        "\n" + "You were correct!" + "\n\n" + trivia;
                     }
                     questionTextArea.setText(fullRespons);  // Adds the question + correct answer + your answer in text
                 }

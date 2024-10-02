@@ -32,6 +32,11 @@ public class QuizGameModel {
         }
     }
 
+    public Question getQuestion(int questionId) {
+        // returns null if question doesn't exist
+        return questionMap.get(questionId);
+    }
+
     // Fetch the current question
     public Question getCurrentQuestion() {
         return questionMap.get(currentQuestionId);
@@ -40,6 +45,10 @@ public class QuizGameModel {
     // Get current question ID
     public int getCurrentQuestionId() {
         return getCurrentQuestion().getQuestionId();
+    }
+
+    public String getQuestionText(int questionId) {
+        return getQuestion(questionId).getQuestionText();
     }
 
     // Get current question text
@@ -53,10 +62,26 @@ public class QuizGameModel {
     }
 
     // Fetch trivia for the current question
+    public String getQuestionTrivia(int questionId) {
+        Question q = getQuestion(questionId);
+        if (q instanceof QuestionMultipleChoices) {
+            return ((QuestionMultipleChoices) q).getTrivia();
+        }
+        return "";
+    }
+    // Fetch trivia for the current question
     public String getCurrentQuestionTrivia() {
         Question currentQuestion = getCurrentQuestion();
         if (currentQuestion instanceof QuestionMultipleChoices) {
             return ((QuestionMultipleChoices) currentQuestion).getTrivia();
+        }
+        return "";
+    }
+
+    public String getQuestionCorrectAnswer(int questionId) {
+        Question q = getQuestion(questionId);
+        if (q instanceof QuestionMultipleChoices) {
+            return ((QuestionMultipleChoices) q).getCorrectAnswer();
         }
         return "";
     }
@@ -101,6 +126,9 @@ public class QuizGameModel {
         this.userName = userName;
     }
 
+    public String getUserName(){
+        return this.userName;
+    }
 
 
 

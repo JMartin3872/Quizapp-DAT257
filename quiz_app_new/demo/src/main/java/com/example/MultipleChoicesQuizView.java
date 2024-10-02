@@ -145,6 +145,8 @@ public class MultipleChoicesQuizView {
     }
 
     private void handleSubmit() { // when the answer is submitted
+        String userName = model.getUserName();
+        User user = User.getInstance(userName);
         // if user doesn't choose an answer and tries to click submit:
         if (selectedAnswer == -1) {
             JOptionPane.showMessageDialog(mainPanel, "Please select an answer.");
@@ -159,9 +161,13 @@ public class MultipleChoicesQuizView {
         if (currentQuestion.getAnswers().get(selectedAnswer).equals(currentQuestion.getCorrectAnswer())) {
             message = "Correct!" + "\n\n" + currentQuestion.getTrivia();
             questionTextarea.setBackground(Color.green);
+            user.addToHistory(model.getCurrentQuestionId(), currentQuestion.getAnswers().get(selectedAnswer));
+            user.correctAnswer();
         } else {
             message = "Wrong! The correct answer is: " + currentQuestion.getCorrectAnswer() + "\n\n" + currentQuestion.getTrivia();
             questionTextarea.setBackground(Color.red);
+            user.addToHistory(model.getCurrentQuestionId(), currentQuestion.getAnswers().get(selectedAnswer));
+            user.wrongAnswer();
         }
 
         // Display the message in the text area

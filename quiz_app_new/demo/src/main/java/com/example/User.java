@@ -1,6 +1,11 @@
 package com.example;
+import java.util.HashMap;
+import java.util.Map;
 
 public class User {
+
+    private static Map<Integer, String> userHistory = new HashMap<>();
+    private static Map<String,User> instances = new HashMap<>();
 
     private String userName;
     private int score;
@@ -8,13 +13,21 @@ public class User {
     private int wrongAnswers;
 
     // Initializing a new user;
-    public User(String userName) {
+    private User(String userName) {
         this.userName = userName;
         this.score = 0;
         this.correctAnswers = 0;
         this.wrongAnswers = 0;
     }
-    
+
+    // Ensures a single instance per key(userName)
+    public static synchronized User getInstance(String userName){
+        if (!instances.containsKey(userName)){
+            instances.put(userName, new User(userName));
+        }
+        return instances.get(userName);
+    }
+
     // Setters and getters
     public void setUserName(String userName) {
         this.userName = userName; 
@@ -31,6 +44,14 @@ public class User {
     public void correctAnswer() {
         this.correctAnswers++;
         score++;
+    }
+
+    public void addToHistory(int questionId, String Answer) {
+        userHistory.put(questionId, Answer);
+    }
+
+    public Map<Integer, String> getHistory(){
+        return userHistory;
     }
 
     public void wrongAnswer() {
