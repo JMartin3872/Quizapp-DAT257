@@ -47,10 +47,10 @@ public class TrueFalseQuizView {
         JPanel answerPanel = new JPanel(new GridBagLayout());
         answerPanel.setBackground(Color.pink);
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(140, 40, 140, 40);
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
+        gbc.insets = new Insets(130, 30, 130, 30);
+        //gbc.fill = GridBagConstraints.BOTH;
+       //gbc.weightx = 0.5;
+        //gbc.weighty = 0.5;
 
         trueButton = new JButton("True");
         falseButton = new JButton("False");
