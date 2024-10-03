@@ -296,7 +296,7 @@ public class QuizGameView {
     }
 
     public Container backToMenu(){
-        cardLayout.show(mainPanel, "Question");
+        cardLayout.show(mainPanel, "Menu");
         return null;
     }
 }
