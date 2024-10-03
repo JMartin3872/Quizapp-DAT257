@@ -22,7 +22,7 @@ public class QuizGameController {
                 if(loginView.getUsername() != null){
                     loginView.setVisible(false);
                     multipleChoiceModel.setUserName(loginView.getUsername());
-                    quizGameView = new QuizGameView(multipleChoiceModel);
+                    quizGameView = new QuizGameView(multipleChoiceModel, trueFalseModel);
                     
                 }
                 

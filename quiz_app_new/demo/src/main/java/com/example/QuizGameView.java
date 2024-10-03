@@ -16,10 +16,12 @@ public class QuizGameView {
     private JLabel titleLabel;
     private JButton startButton, optionsButton, exitButton;
     private QuizGameModel model; // Model reference
+    private ModelTrueFalse tfmodel;
 
-    public QuizGameView(QuizGameModel model) {
+    public QuizGameView(QuizGameModel model, ModelTrueFalse tfmodel) {
 
         this.model = model;
+        this.tfmodel = tfmodel;
 
         // init. frame and UI components
         frame = new JFrame("Quiz Game Menu");
@@ -180,7 +182,7 @@ public class QuizGameView {
         JButton toTFQ = new JButton("Next");
         toTFQ.setFont(new Font("Arial", Font.BOLD, 24));
         toTFQ.setBackground(Color.WHITE);
-        JTextArea tfInfo = new JTextArea(model.getMCQuizInfo());
+        JTextArea tfInfo = new JTextArea(tfmodel.getTFQuizInfo());
         tfInfo.setPreferredSize(new Dimension(500, 300));
         tfInfo.setBackground(Color.ORANGE);
         tfInfo.setFont(new Font("Arial", Font.BOLD, 24));
