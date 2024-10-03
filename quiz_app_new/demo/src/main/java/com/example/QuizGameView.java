@@ -295,8 +295,8 @@ public class QuizGameView {
         cardLayout.show(mainPanel, "MultipleChoiseSummary");
     }
 
-    public Container backToMenu(){
+    public Container backToMenu(JPanel cardPanel){
         cardLayout.show(mainPanel, "Menu");
-        return null;
+        return cardPanel;
     }
 }

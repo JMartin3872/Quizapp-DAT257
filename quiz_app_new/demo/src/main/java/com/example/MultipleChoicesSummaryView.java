@@ -148,7 +148,7 @@ public class MultipleChoicesSummaryView extends JPanel {
 
         showResultButton.addActionListener(e -> {cardLayout.show(cardPanel, "Menu");});
         reviewResultButton.addActionListener(e -> cardLayout.show(cardPanel, "Review"));
-        returnToMenuButton.addActionListener(e -> cardLayout.show(quizGameView.backToMenu(), "Return to Menu"));
+        returnToMenuButton.addActionListener(e -> cardLayout.show(quizGameView.backToMenu(cardPanel), "Return to Menu"));
 
 
         controlPanel.setBackground(new Color(80,100,230));
