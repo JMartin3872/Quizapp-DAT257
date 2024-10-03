@@ -8,8 +8,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 public class QuizGameView {
-
-
     private JFrame frame;
     private CardLayout cardLayout;
     private JPanel mainPanel;
