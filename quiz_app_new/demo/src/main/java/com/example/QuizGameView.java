@@ -135,12 +135,12 @@ public class QuizGameView {
 
 
         // TODO Uncomment when EstimateQuizView class has been implemented
-/*
+
         // Creating an instance of EstimateQuizView
         EstimateQuizView eqView = new EstimateQuizView(this);
         mainPanel.add(eqView.getPanel(), "Estimate"); // Add the panel to CardLayout
         gbc.gridy = 2;
-*/
+
 
 
         // Creating and adding the panel for Multiple Choice Quiz Info to CardLayout Container
