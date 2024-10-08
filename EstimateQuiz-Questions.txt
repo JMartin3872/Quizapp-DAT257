@@ -1,20 +1,20 @@
-1. How many tons of waste is produced from households in a year, globally?
-2000000000
+1. How many millon tons of waste is produced from households in a year, globally?
+2000
 Every 2 hours we throw out enough stuff to fill the world's largest container ship with trash. That's 12 container ships every single day, and 4570 container ships in one year.
-2. How many plastic bags is produced globally in a year?
-5000000000000
+2. How many billions of plastic bags is produced globally in a year?
+5000
 Plastic will only start degrading after 700 years and will only fully degrade in 1000 years. This means that all the plastic that has ever been produced has not degraded yet.
-3. What is the size (in square kilometers)of the Great Pacific Garbage Patch?
-1600000
+3. What is the size (in thousands square kilometers)of the Great Pacific Garbage Patch?
+1600
 The size of the Great Pacific Garbage patch is equivalent to four times the size of Sweden.
 4. What is the world average temperatur (in degrees celsius)?
 15
 Earth's temperature has risen by an average of 0.06° Celsius per decade since 1850, or about 3.6° Celsius in total.
-5. How many tons of CO2 is emitted into the atmosphere in a year?
-37000000000
+5. How many billion tons of CO2 is emitted into the atmosphere in a year?
+37
 CO2 is considered a greenhouse gas, leading to higher temeratures. Since 1990, global CO₂ emissions have increased by more than 60 percent.
-6. How many tons of ice from antarctica is melting in a year?
-150000000000
+6. How many billion tons of ice from antarctica is melting in a year?
+150
 If all the ice covering Antarctica , Greenland, and in mountain glaciers around the world were to melt, sea level would rise about 70 meters. 
 7. How large is the sea level rise (in cm), since year 1900?
 30
