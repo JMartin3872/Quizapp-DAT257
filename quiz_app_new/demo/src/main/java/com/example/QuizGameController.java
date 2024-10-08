@@ -9,12 +9,14 @@ public class QuizGameController {
 
     private QuizGameModel multipleChoiceModel;
     private ModelTrueFalse trueFalseModel;
+    private ModelEstimateNumber modelEstimateNumber;
     private LoginView loginView;
     private QuizGameView quizGameView;
 
     public QuizGameController(){
         this.multipleChoiceModel = new QuizGameModel();
         this.trueFalseModel = new ModelTrueFalse();
+        this.modelEstimateNumber = new ModelEstimateNumber();
 
         this.loginView =new LoginView(new ActionListener() {
             @Override
