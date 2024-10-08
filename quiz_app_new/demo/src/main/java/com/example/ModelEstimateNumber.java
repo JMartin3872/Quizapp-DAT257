@@ -53,7 +53,16 @@ public class ModelEstimateNumber {
     //assumes that useranswer is a number, returns true if useranswer is within -+10%
     public boolean checkAnswer(String userAnswer) {
         int correctAnswerInt = Integer.parseInt(this.getCurrentQuestionCorrectAnswer());
-        int userAnswerInt = Integer.parseInt(userAnswer);
+        int userAnswerInt = 0;
+
+        try { 
+            userAnswerInt = Integer.parseInt(userAnswer); 
+        } catch(NumberFormatException e) { 
+            return false; 
+        } catch(NullPointerException e) {
+            return false;
+        }
+
         double lowerNumber = (double)(0.9 * correctAnswerInt);
         double higherNumber = (double)(1.1 * correctAnswerInt);
 

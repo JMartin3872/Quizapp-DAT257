@@ -13,6 +13,7 @@ public class TestReaderQuestions {
         for(Question question : questions){
             System.out.println(question.toString());
         }
+
     }
     
 }
