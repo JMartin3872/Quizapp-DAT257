@@ -9,7 +9,7 @@ public class ModelEstimateNumber {
     private int correctAnswers = 0;
     private int wrongAnswers = 0;
 
-    private String estimateNumberInfo = "This quiz presents you with questions.\n\n"
+    private String estimateNumberInfo = "This quiz presents you with 10 questions.\n\n"
         + "You are tasked to estimate a number and write it.\n\n"
         + "The answer is correct if it is within the margins of -+ 10% of the exact answer.";
 

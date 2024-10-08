@@ -17,11 +17,13 @@ public class QuizGameView {
     private JButton startButton, optionsButton, exitButton;
     private QuizGameModel model; // Model reference
     private ModelTrueFalse tfmodel;
+    private ModelEstimateNumber estModel;
 
-    public QuizGameView(QuizGameModel model, ModelTrueFalse tfmodel) {
+    public QuizGameView(QuizGameModel model, ModelTrueFalse tfmodel, ModelEstimateNumber estModel) {
 
         this.model = model;
         this.tfmodel = tfmodel;
+        this.estModel = estModel;
 
         // init. frame and UI components
         frame = new JFrame("Quiz Game Menu");
@@ -132,6 +134,14 @@ public class QuizGameView {
         gbc.gridy = 2;
 
 
+        // TODO Uncomment when EstimateQuizView class has been implemented
+/*
+        // Creating an instance of EstimateQuizView
+        EstimateQuizView eqView = new EstimateQuizView(this);
+        mainPanel.add(eqView.getPanel(), "Estimate"); // Add the panel to CardLayout
+        gbc.gridy = 2;
+*/
+
 
         // Creating and adding the panel for Multiple Choice Quiz Info to CardLayout Container
         JPanel mcInfoPanel = new JPanel();
@@ -198,6 +208,39 @@ public class QuizGameView {
 
 
 
+        // Creating and adding the panel for Estimate Quiz Info to CardLayout Container
+        JPanel estInfoPanel = new JPanel();
+        estInfoPanel.setLayout(new GridBagLayout());
+        estInfoPanel.setBackground(Color.ORANGE);
+        mainPanel.add(estInfoPanel, "EstimateInfo");
+        gbc.gridy = 6;
+
+        // Button for switching to Estimate Quiz Info
+        JButton toEstQInfo = new JButton("Estimation Questions");
+        toEstQInfo.setFont(new Font("Arial", Font.BOLD, 24));
+        toEstQInfo.setBackground(Color.WHITE);
+        questionPanel.add(toEstQInfo, gbc); // Creating the Estimation Info Panel
+
+        // Text area and button for switching to Estimation Quiz View
+        JButton toEstQ = new JButton("Next");
+        toEstQ.setFont(new Font("Arial", Font.BOLD, 24));
+        toEstQ.setBackground(Color.WHITE);
+        JTextArea estInfo = new JTextArea(estModel.getEstimateNumberQuizInfo());
+        estInfo.setPreferredSize(new Dimension(500, 300));
+        estInfo.setBackground(Color.ORANGE);
+        estInfo.setFont(new Font("Arial", Font.BOLD, 24));
+        estInfo.setWrapStyleWord(true);
+        estInfo.setLineWrap(true);
+        estInfo.setEditable(false);
+        estInfo.setOpaque(false);
+
+        gbc.gridy = 1;
+        estInfoPanel.add(estInfo, gbc);
+        gbc.gridy = 3;
+        estInfoPanel.add(toEstQ, gbc);
+
+
+
 
         MultipleChoicesSummaryView mcsView = new MultipleChoicesSummaryView(this);
         mainPanel.add(mcsView, "MultipleChoiseSummary");
@@ -256,6 +299,21 @@ public class QuizGameView {
                 cardLayout.show(mainPanel, "TrueFalse"); // Switch to the True Or False Question Panel
             }
         });
+
+        toEstQInfo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(mainPanel, "EstimateInfo"); // Switch to the Estimation Info Panel
+            }
+        });
+
+        toEstQ.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(mainPanel, "Estimate"); // Switch to Estimation Quiz Panel
+            }
+        });
+
 
         // component listener to handle resizing and dynamically update components
         frame.addComponentListener(new ComponentAdapter() {

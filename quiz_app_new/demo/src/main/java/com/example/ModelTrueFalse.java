@@ -9,7 +9,7 @@ public class ModelTrueFalse {
     private int correctAnswers = 0;
     private int wrongAnswers = 0;
 
-    private String trueOrFalseInfo = "This quiz presents you with true or false questions.\n\n"
+    private String trueOrFalseInfo = "This quiz presents you with 10 true or false questions.\n\n"
         + "You are tasked with selecting the correct answer.\n\n"
         + "Select your answer and press \"Submit Answer\".";
 
