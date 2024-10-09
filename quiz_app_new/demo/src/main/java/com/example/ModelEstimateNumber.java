@@ -91,7 +91,7 @@ public class ModelEstimateNumber {
 
     // Checks whether the current quiz is finished
     public boolean isFinished() {
-        return currentQuestionId >= questionMap.size() - 1;
+        return currentQuestionId >= (questionMap.size() - 1);
     }
 
     // Gets info about True or False quiz

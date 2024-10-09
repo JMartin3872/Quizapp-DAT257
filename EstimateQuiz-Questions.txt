@@ -9,16 +9,16 @@ Plastic will only start degrading after 700 years and will only fully degrade in
 The size of the Great Pacific Garbage patch is equivalent to four times the size of Sweden.
 4. What is the world average temperatur (in degrees celsius)?
 15
-Earth's temperature has risen by an average of 0.06° Celsius per decade since 1850, or about 3.6° Celsius in total.
+Earth's temperature has risen by an average of 0.06 degrees Celsius per decade since 1850, or about 3.6 degrees Celsius in total.
 5. How many billion tons of CO2 is emitted into the atmosphere in a year?
 37
-CO2 is considered a greenhouse gas, leading to higher temeratures. Since 1990, global CO₂ emissions have increased by more than 60 percent.
+CO2 is considered a greenhouse gas, leading to higher temperatures. Since 1990, global CO2 emissions have increased by more than 60 percent.
 6. How many billion tons of ice from antarctica is melting in a year?
 150
-If all the ice covering Antarctica , Greenland, and in mountain glaciers around the world were to melt, sea level would rise about 70 meters. 
+If all the ice covering Antarctica , Greenland, and in mountain glaciers around the world were to melt, sea level would rise about 70 meters.
 7. How large is the sea level rise (in cm), since year 1900?
 30
-The Solomon Islands are the site of the first “sinking islands” of the 21st century, where five islands disappeared into the ocean as the sea level rose to record-breaking new heights. 
+The Solomon Islands are the site of the first 'sinking islands' of the 21st century, where five islands disappeared into the ocean as the sea level rose to record-breaking new heights. 
 8. How much time is left (in years) before the planets rainforests are cut down, if following the current rate of deforestation?
 75
 The deforestation of tropical rain forests is a threat to life worldwide. Deforestation may have profound effects on global climate and cause the extinction of thousands of species annually.
@@ -28,3 +28,6 @@ Water scarcity limits access to safe water for drinking and for practising basic
 10. How many percent of species is currently in critical risk of extinction?
 29
 Humanity has wiped out 60% of mammals, birds, fish and reptiles since 1970.
+
+
+
