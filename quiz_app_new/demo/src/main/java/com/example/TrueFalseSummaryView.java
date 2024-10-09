@@ -1,5 +1,4 @@
 package com.example;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,8 +10,7 @@ import javax.swing.table.JTableHeader;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
-public class MultipleChoicesSummaryView extends JPanel {
+public class TrueFalseSummaryView extends JPanel{
     private ProgressPanel progressPanel;
     private JButton startButton;
     private CardLayout cardLayout;
@@ -29,12 +27,12 @@ public class MultipleChoicesSummaryView extends JPanel {
 
     private DefaultTableModel dataModel;
 
-    private QuizGameModel m;
+    private ModelTrueFalse m;
     private QuizGameView quizGameView;
 
     private Boolean animation = false;
 
-    public MultipleChoicesSummaryView(QuizGameView quizGameView) {
+    public TrueFalseSummaryView(QuizGameView quizGameView) {
         this.quizGameView = quizGameView;
         setSize(720, 480);
         setBackground(new Color(80,100,230));
@@ -46,7 +44,7 @@ public class MultipleChoicesSummaryView extends JPanel {
 
     // fetch the correct amount of answers the user got
     private int getCorrectAnswers(){
-        QuizGameModel m = new QuizGameModel();
+        ModelTrueFalse m = new ModelTrueFalse();
         String userName = m.getUserName();
         User user = User.getInstance(userName);
         return user.getCorrectAnswers();
@@ -54,7 +52,7 @@ public class MultipleChoicesSummaryView extends JPanel {
 
     // fetch the incorrect amount of answers the user got
     private int getIncorrectAnswers(){
-        QuizGameModel m = new QuizGameModel();
+        ModelTrueFalse m = new ModelTrueFalse();
         String userName = m.getUserName();
         User user = User.getInstance(userName);
         return user.getWrongAnswers();
@@ -108,7 +106,7 @@ public class MultipleChoicesSummaryView extends JPanel {
 
     private void setupUI() {
 
-        QuizGameModel m = new QuizGameModel();  // Have to apply this every time I want to get username or it will give exception
+        ModelTrueFalse m = new ModelTrueFalse();  // Have to apply this every time I want to get username or it will give exception
         String userName = m.getUserName();
         User user = User.getInstance(userName);
 
@@ -182,7 +180,7 @@ public class MultipleChoicesSummaryView extends JPanel {
 
     private String feedbackMessage(int proportion){
         String topText;
-        if (proportion > 90){
+        if (proportion >= 90){
             topText = "Excellent Job!";
         } else if (proportion >= 80 && proportion < 90){
             topText = "Well done!";
@@ -288,12 +286,12 @@ public class MultipleChoicesSummaryView extends JPanel {
     }
 
     private void updateTable(){
-        QuizGameModel m = new QuizGameModel();
+        ModelTrueFalse m = new ModelTrueFalse();
 
         String userName = m.getUserName();
         User user = User.getInstance(userName);
         dataModel.setRowCount(0); // removes all rows
-        for (int i = 0; i < m.getTotalQuestions(); i++){
+        for (int i = 0; i < m.getTotalQuestions() - 1; i++){
             String userAnswer;
             String correctAnswer = m.getQuestionCorrectAnswer(i);
             if (user.getHistory().get(i) == null){
@@ -309,7 +307,7 @@ public class MultipleChoicesSummaryView extends JPanel {
     private DefaultTableModel createTableData(){
         String[] columnNames = {"Question", "Correct Answer", "Your Answer", "Result"};
 
-        QuizGameModel m = new QuizGameModel();
+        ModelTrueFalse m = new ModelTrueFalse();
 
         String userName = m.getUserName();
         User user = User.getInstance(userName);
@@ -349,7 +347,7 @@ public class MultipleChoicesSummaryView extends JPanel {
         };
 
 
-        table.setRowHeight(30);  // Set row height
+        table.setRowHeight(50);  // Set row height
         table.getColumnModel().getColumn(0).setPreferredWidth(100);  // Set column width
         table.getColumnModel().getColumn(1).setPreferredWidth(100);  // Set column width
         table.getColumnModel().getColumn(2).setPreferredWidth(100);  // Set column width
@@ -408,10 +406,10 @@ public class MultipleChoicesSummaryView extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int selectedRow = table.getSelectedRow();
-                QuizGameModel m = new QuizGameModel();
+                ModelTrueFalse m = new ModelTrueFalse();
                 if (selectedRow != -1) {
                     String fullQuestion = (String) table.getValueAt(selectedRow, 0);
-                    QuestionMultipleChoices selectedQuestion = (QuestionMultipleChoices) m.getQuestion(selectedRow);
+                    QuestionTrueFalse selectedQuestion = (QuestionTrueFalse) m.getQuestion(selectedRow);
                     String trivia = selectedQuestion.getTrivia();
                     String fullRespons = fullQuestion + "\n" + "You answered " + table.getValueAt(selectedRow, 1) + 
                     "\n" + "The correct answer was: " + table.getValueAt(selectedRow, 2) + 
@@ -456,5 +454,7 @@ public class MultipleChoicesSummaryView extends JPanel {
         this.cardLayout = cardLayout;
     }
 }
+
+
 
 

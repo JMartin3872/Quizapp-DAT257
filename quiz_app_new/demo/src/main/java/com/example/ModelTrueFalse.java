@@ -24,6 +24,11 @@ public class ModelTrueFalse {
         }
     }
 
+    public Question getQuestion(int questionId) {
+        // returns null if question doesn't exist
+        return questionMap.get(questionId);
+    }
+
     // Fetch the current question
     public Question getCurrentQuestion() {
         return questionMap.get(currentQuestionId);
@@ -39,6 +44,10 @@ public class ModelTrueFalse {
         return getCurrentQuestion().getQuestionText();
     }
 
+    public String getQuestionText(int questionId) {
+        return getQuestion(questionId).getQuestionText();
+    }
+
     // Get the answer alternatives of the current question
     public ArrayList<String> getCurrentQuestionAnswers() {
         return getCurrentQuestion().getAnswers();
@@ -49,9 +58,22 @@ public class ModelTrueFalse {
         return questionMap.get(currentQuestionId).getTrivia();
     }
 
+    // Fetch trivia for the current question
+    public String getQuestionTrivia(int questionId) {
+        Question q = getQuestion(questionId);
+        if (q instanceof QuestionMultipleChoices) {
+            return ((QuestionMultipleChoices) q).getTrivia();
+        }
+        return "";
+    }
+
     // Get the correct answer for the current question
     public String getCurrentQuestionCorrectAnswer() {
         return questionMap.get(currentQuestionId).getCorrectAnswer();
+    }
+
+    public String getQuestionCorrectAnswer(int questionId) {
+        return questionMap.get(questionId).getCorrectAnswer();
     }
 
     public boolean checkAnswer(String userAnswer) {
@@ -83,6 +105,14 @@ public class ModelTrueFalse {
     // Sets the username
     public void setUserName(String userName){
         this.userName = userName;
+    }
+
+    public String getUserName(){
+        return this.userName;
+    }
+
+    public void restartQuiz(){
+        this.currentQuestionId = 0;
     }
 
     // For now, these functions reside in the model. Will be moved to User class later

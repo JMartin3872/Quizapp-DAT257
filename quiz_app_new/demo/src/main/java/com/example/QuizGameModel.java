@@ -130,6 +130,10 @@ public class QuizGameModel {
         return this.userName;
     }
 
+    public void restartQuiz(){
+        this.currentQuestionId = 0;
+    }
+
 
 
 

@@ -18,6 +18,10 @@ public class QuizGameView {
     private QuizGameModel model; // Model reference
     private ModelTrueFalse tfmodel;
     private ModelEstimateNumber estModel;
+    private MultipleChoicesSummaryView mcsView;
+    private MultipleChoicesQuizView mcqView;
+    private TrueFalseQuizView tfqView;
+    private TrueFalseSummaryView tfsView;
 
     public QuizGameView(QuizGameModel model, ModelTrueFalse tfmodel, ModelEstimateNumber estModel) {
 
@@ -122,14 +126,14 @@ public class QuizGameView {
         gbc.gridy = 0;
 
 
-        MultipleChoicesQuizView mcqView = new MultipleChoicesQuizView(this); // Create an instance of MultipleChoicesQuizView
+        mcqView = new MultipleChoicesQuizView(this); // Create an instance of MultipleChoicesQuizView
         mainPanel.add(mcqView.getPanel(), "MultipleChoice"); // Add the panel to CardLayout
         gbc.gridy = 2;
 
 
 
         // Creating an instance of TrueFalseQuizView
-        TrueFalseQuizView tfqView = new TrueFalseQuizView(this);
+        tfqView = new TrueFalseQuizView(this);
         mainPanel.add(tfqView.getPanel(), "TrueFalse"); // Add the panel to CardLayout
         gbc.gridy = 2;
 
@@ -242,8 +246,11 @@ public class QuizGameView {
 
 
 
-        MultipleChoicesSummaryView mcsView = new MultipleChoicesSummaryView(this);
+        mcsView = new MultipleChoicesSummaryView(this);
         mainPanel.add(mcsView, "MultipleChoiseSummary");
+
+        tfsView = new TrueFalseSummaryView(this);
+        mainPanel.add(tfsView, "TrueFalseSummary");
 
 
         // Add ActionListeners to the buttons to switch between panels
@@ -283,6 +290,7 @@ public class QuizGameView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(mainPanel, "MultipleChoice"); // Switch to the Multiple Choice Questions panel
+                model.restartQuiz();
             }
         });
 
@@ -353,8 +361,26 @@ public class QuizGameView {
         cardLayout.show(mainPanel, "MultipleChoiseSummary");
     }
 
+    public void showTrueFalseSummaryView(){
+        cardLayout.show(mainPanel, "TrueFalseSummary");
+    }
+
     public Container backToMenu(JPanel cardPanel){
         cardLayout.show(mainPanel, "Menu");
+        mainPanel.remove(mcsView);
+        mcsView = new MultipleChoicesSummaryView(this);
+        mainPanel.add(mcsView, "MultipleChoiseSummary");
+        mainPanel.remove(mcqView.getPanel());
+        mcqView = new MultipleChoicesQuizView(this);
+        mainPanel.add(mcqView.getPanel(), "MultipleChoice");
+
+        // Reset quiz for the true and false questions
+        mainPanel.remove(tfsView);
+        tfsView = new TrueFalseSummaryView(this);
+        mainPanel.add(tfsView, "TrueFalseSummary");
+        mainPanel.remove(tfqView.getPanel());
+        tfqView = new TrueFalseQuizView(this);
+        mainPanel.add(tfqView.getPanel(), "TrueFalse");
         return cardPanel;
     }
 }

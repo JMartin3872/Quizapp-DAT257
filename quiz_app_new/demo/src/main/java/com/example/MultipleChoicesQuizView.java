@@ -190,6 +190,7 @@ public class MultipleChoicesQuizView {
             // If the current question remains the same, it means we're at the end of the quiz.
             questionsAnswered = true;
             checkAllQuestionsAnswered();
+            model.restartQuiz();
             return; // Exit the method to avoid looping back to the same question.
         }
 
@@ -205,6 +206,7 @@ public class MultipleChoicesQuizView {
     private void checkAllQuestionsAnswered(){
         if (questionsAnswered){
             quizGameView.showMultipleChoiseSummaryView();
+            questionsAnswered = false;
         }
     }
 }
