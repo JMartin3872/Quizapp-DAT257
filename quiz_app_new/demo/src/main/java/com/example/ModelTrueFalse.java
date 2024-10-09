@@ -8,6 +8,7 @@ public class ModelTrueFalse {
     private int score = 0;
     private int correctAnswers = 0;
     private int wrongAnswers = 0;
+    private int nrQuestions;
 
     private String trueOrFalseInfo = "This quiz presents you with 10 true or false questions.\n\n"
         + "You are tasked with selecting the correct answer.\n\n"
@@ -18,7 +19,8 @@ public class ModelTrueFalse {
         // QuestionReaderMultipleChoices used to read questions from  testQeustions.txt
         QuestionReaderTrueFalse reader = new QuestionReaderTrueFalse();
         LinkedList<Question> questions = reader.readQuestionFile("True-False-Questions.txt");
-
+        nrQuestions = questions.size();
+        trueOrFalseInfo = trueOrFalseInfo + "\n\nThe quiz has " + nrQuestions + " questions.";
         for (Question question : questions) {
             questionMap.put(question.getQuestionId(), question);
         }
