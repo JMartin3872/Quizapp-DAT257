@@ -32,7 +32,7 @@ public class EstimateQuizView {
     private void setupUI() {
         // Setting up the question panel
         JPanel questionPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        questionPanel.setBackground(Color.pink);
+        questionPanel.setBackground(new Color(204, 229, 255));
         questionTextarea = new JTextArea();
         questionTextarea.setFont(new Font("Arial", Font.BOLD, 24));
         questionTextarea.setEditable(false);
@@ -45,7 +45,7 @@ public class EstimateQuizView {
 
         // Setting up the answer panel
         JPanel answerPanel = new JPanel(new GridBagLayout());
-        answerPanel.setBackground(Color.pink);
+        answerPanel.setBackground(new Color(204, 229, 255));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(30, 0, 30, 0);
 
