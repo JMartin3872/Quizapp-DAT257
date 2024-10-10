@@ -19,8 +19,7 @@ public class ModelTrueFalse {
         // QuestionReaderMultipleChoices used to read questions from  testQeustions.txt
         QuestionReaderTrueFalse reader = new QuestionReaderTrueFalse();
         LinkedList<Question> questions = reader.readQuestionFile("True-False-Questions.txt");
-        nrQuestions = questions.size();
-        trueOrFalseInfo = trueOrFalseInfo + "\n\nThe quiz has " + nrQuestions + " questions.";
+        
         for (Question question : questions) {
             questionMap.put(question.getQuestionId(), question);
         }

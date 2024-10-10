@@ -108,6 +108,7 @@ public class EstimateQuizView {
             // Load the current question text
             questionTextarea.setText(model.getCurrentQuestionText());
             estimateInputField.setEnabled(true);
+            estimateInputField.requestFocus();
             estimateInputField.setText("");  // Clear previous input
         } else {
             // Display score and end the quiz
