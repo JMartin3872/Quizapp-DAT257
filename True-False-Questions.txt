@@ -38,7 +38,3 @@ Some of the materials have a value and some have a recycling cost, but your recy
 False
 True
 Most of the major supermarkets are doing their bit and some of the packaging plays a vital role in extending the shelf life of food stuffs.
-
-
-
-

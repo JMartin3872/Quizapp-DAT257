@@ -10,8 +10,7 @@ public class QuizGameModel {
     private int correctAnswers = 0;
     private int wrongAnswers = 0;
 
-    private String multipleChoiceInfo = "This quiz presents you with 15 questions and several answer alternatives.\n\n"
-        + "You are tasked with selecting the correct amount of carbon dioxide equivalents (kg) the following emit.\n\n"
+    private String multipleChoiceInfo = "In this quiz you are tasked with selecting the correct amount of carbon dioxide equivalents (kg) the following emit from the answer alternatives.\n\n"
         + "Select your answer and press \"Submit Answer\".";
 
     public QuizGameModel() {
@@ -22,6 +21,7 @@ public class QuizGameModel {
         for (Question question : questions) {
             questionMap.put(question.getQuestionId(), question);
         }
+        multipleChoiceInfo += "\n\n There are " + getTotalQuestions() + " questions in this quiz.";
     }
 
     // Obsolete, maybe remove?

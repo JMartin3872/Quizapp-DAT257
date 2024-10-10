@@ -10,9 +10,7 @@ public class ModelTrueFalse {
     private int wrongAnswers = 0;
     private int nrQuestions;
 
-    private String trueOrFalseInfo = "This quiz presents you with 10 true or false questions.\n\n"
-        + "You are tasked with selecting the correct answer.\n\n"
-        + "Select your answer and press \"Submit Answer\".";
+    private String trueOrFalseInfo = "In this quiz you are tasked with selecting whether the statement is true or false.";
 
 
     public ModelTrueFalse() {
@@ -23,6 +21,7 @@ public class ModelTrueFalse {
         for (Question question : questions) {
             questionMap.put(question.getQuestionId(), question);
         }
+        trueOrFalseInfo += "\n\n There are " + getTotalQuestions() + " questions in this quiz.";
     }
 
     public Question getQuestion(int questionId) {
