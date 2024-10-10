@@ -1,74 +1,74 @@
-1. Train Journey: Stockholm - Gothenburg. A round trip totaling 900 km by high-speed train?
+Train Journey: Stockholm - Gothenburg. A round trip totaling 900 km by high-speed train?
 5 KG
 10 KG
 15 KG
 Trains are one of the most environmentally friendly modes of transportation. A trip from Stockholm to Gothenburg by high-speed train emits significantly less carbon dioxide than the equivalent flight or car trip. High-speed trains in Sweden often run on electricity from renewable sources, making the journey even more climate-friendly.
-2. Cheese Sandwiches: Two cheese sandwiches with butter every day for a year?
+Cheese Sandwiches: Two cheese sandwiches with butter every day for a year?
 250 KG
 150KG
 200KG
 Cheese has a relatively high environmental impact due to emissions from dairy production, mainly from cows. Large resources are required to produce cheese. Greenhouse gases come from both animal digestion and feed production.
-3. Watching TV: 4 hours a day. Having your 65-inch TV on for 4 hours a day for a year?
+Watching TV: 4 hours a day. Having your 65-inch TV on for 4 hours a day for a year?
 40 KG
 20 KG
 60 KG
 Modern TVs are more energy-efficient than older ones, but long viewing times on large screens can still contribute to high energy consumption.
-4. Package Delivery: By air from China. Shipping a package (25 liters) of, for example, clothes bought online once a month for a year?
+Package Delivery: By air from China. Shipping a package (25 liters) of, for example, clothes bought online once a month for a year?
 250 KG
 300 KG
 350 KG
 Air freight is much faster than sea freight, but it is also one of the most carbon-intensive shipping methods.
-5. Heating an Apartment: Heating a 70 m² apartment in central Sweden with district heating?
+Heating an Apartment: Heating a 70 m² apartment in central Sweden with district heating?
 600 KG
 300 KG
 900 KG
 District heating is an efficient and relatively environmentally friendly heating method in Sweden. It often uses waste heat from electricity production or waste incineration.
-6. Halved Food Waste: Reduced emissions from halving food waste over a year for an average Swede?
+Halved Food Waste: Reduced emissions from halving food waste over a year for an average Swede?
 -200 KG
 -150 KG
 -100 KG
 Food waste is a significant environmental problem as resources such as water, land, and energy are wasted. Reducing food waste can greatly reduce the total greenhouse gas emissions from food production.
-7. Heating with Electric Heaters: Heating a 140 m² house in central Sweden with direct electric heating (Swedish electricity mix)?
+Heating with Electric Heaters: Heating a 140 m² house in central Sweden with direct electric heating (Swedish electricity mix)?
 700 KG
 500 KG
 900 KG
 How environmentally friendly electric heating is depends on where the electricity comes from. In Sweden, electricity is largely renewable, making electric heating relatively climate-smart.
-8. Flights: Swedish yearly average. Flying as an average Swede over a year (CO₂ only)?
+Flights: Swedish yearly average. Flying as an average Swede over a year (CO₂ only)?
 600 KG
 400 KG
 200 KG
 Air travel accounts for a significant portion of individual carbon emissions. An average Swede flies much more compared to many other countries, which has a major impact on the climate since flying is very emissions-intensive.
-9. T-bone Steak: Beef. A meal with 150g of beef every day for a year?
+T-bone Steak: Beef. A meal with 150g of beef every day for a year?
 3000 KG
 2000 KG
 4000 KG
 Beef production is one of the largest sources of greenhouse gases within the food industry. This is primarily due to methane emissions from cows and the large amounts of water and feed required for meat production.
-10. Hand Washing Dishes: Using filled water. Washing dishes with filled water from district heating every day for a year?
+Hand Washing Dishes: Using filled water. Washing dishes with filled water from district heating every day for a year?
 20 KG
 15 KG
 10 KG
 Hand washing dishes in filled water can be more environmentally friendly than letting the water run, but it is usually less energy-efficient than using a modern dishwasher, especially if it is run full.
-11. Pork Shoulder: Pork. A meal with 150g of pork every day for a year?
+Pork Shoulder: Pork. A meal with 150g of pork every day for a year?
 400 KG
 450 KG
 350 KG
 Pork has a lower climate impact than beef, but it is still a significant source of greenhouse gases compared to plant-based diets.
-12. Flight Journey: Stockholm - Gothenburg. A round trip totaling 900 km by plane (CO₂ only)?
+Flight Journey: Stockholm - Gothenburg. A round trip totaling 900 km by plane (CO₂ only)?
 200 KG
 250 KG
 300 KG
 A short domestic flight like this emits much more carbon dioxide per kilometer compared to trains, as the high fuel consumption of flying particularly affects shorter distances.
-13. Car Journey: Stockholm - Gothenburg. A round trip totaling 900 km with two people in a medium-sized diesel car?
+Car Journey: Stockholm - Gothenburg. A round trip totaling 900 km with two people in a medium-sized diesel car?
 100 KG
 50 KG
 150 KG
 Cars running on fossil fuels emit significantly more carbon dioxide per kilometer than trains, but electric cars can reduce these emissions if charged with clean electricity.
-14. Luxury Cruise: Mediterranean. Fly from Stockholm to Barcelona and stay a week on a cruise ship?
+Luxury Cruise: Mediterranean. Fly from Stockholm to Barcelona and stay a week on a cruise ship?
 1 000 KG
 500 KG
 750 KG
 Cruise ships are massive energy consumers and have a large environmental impact, not only from greenhouse gas emissions but also from water pollution and effects on marine ecosystems.
-15. New Computer: Production emissions from a 15-inch laptop?
+New Computer: Production emissions from a 15-inch laptop?
 350 KG
 300 KG
 400 KG
