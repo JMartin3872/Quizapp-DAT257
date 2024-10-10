@@ -109,7 +109,7 @@ public class TrueFalseQuizView {
 
     private void loadQuestion() {
         if (!modeltf.isFinished()) {
-            questionTextarea.setText(modeltf.getCurrentQuestionText());
+            questionTextarea.setText((modeltf.getCurrentQuestionId()+ 1) + "/" + (modeltf.getTotalQuestions() -1) + "\n" + modeltf.getCurrentQuestionText());
             trueButton.setEnabled(true);   // Enable answer buttons for new question
             falseButton.setEnabled(true);
         } else {

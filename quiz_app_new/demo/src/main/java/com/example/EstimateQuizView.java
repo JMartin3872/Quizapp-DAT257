@@ -106,7 +106,7 @@ public class EstimateQuizView {
         // Check if the quiz is finished
         if (!model.isFinished()) {
             // Load the current question text
-            questionTextarea.setText(model.getCurrentQuestionText());
+            questionTextarea.setText((model.getCurrentQuestionId()+ 1) + "/" + (model.getTotalQuestions()-1) + "\n" + model.getCurrentQuestionText());
             estimateInputField.setEnabled(true);
             estimateInputField.requestFocus();
             estimateInputField.setText("");  // Clear previous input

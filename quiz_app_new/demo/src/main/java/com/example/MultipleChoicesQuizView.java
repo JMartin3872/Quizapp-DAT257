@@ -138,7 +138,7 @@ public class MultipleChoicesQuizView {
         Question currentQuestion = model.getCurrentQuestion();
         if (currentQuestion == null) return;
 
-        questionTextarea.setText(currentQuestion.getQuestionText());
+        questionTextarea.setText((model.getCurrentQuestionId()+ 1) + "/" + (model.getTotalQuestions()) + "\n" +currentQuestion.getQuestionText());
 
         // add answer buttons text
         for (int i = 0; i < currentQuestion.getAnswers().size(); i++) {
