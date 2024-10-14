@@ -15,11 +15,17 @@ public class QuizGameView {
     private JButton startButton, optionsButton, exitButton;
     private QuizGameModel model; // Model reference
     private ModelTrueFalse tfmodel;
+    private ModelEstimateNumber estModel;
+    private MultipleChoicesSummaryView mcsView;
+    private MultipleChoicesQuizView mcqView;
+    private TrueFalseQuizView tfqView;
+    private TrueFalseSummaryView tfsView;
 
-    public QuizGameView(QuizGameModel model, ModelTrueFalse tfmodel) {
+    public QuizGameView(QuizGameModel model, ModelTrueFalse tfmodel, ModelEstimateNumber estModel) {
 
         this.model = model;
         this.tfmodel = tfmodel;
+        this.estModel = estModel;
 
         // init. frame and UI components
         frame = new JFrame("Quiz Game Menu");
@@ -118,15 +124,23 @@ public class QuizGameView {
         gbc.gridy = 0;
 
 
-        MultipleChoicesQuizView mcqView = new MultipleChoicesQuizView(this); // Create an instance of MultipleChoicesQuizView
+        mcqView = new MultipleChoicesQuizView(this); // Create an instance of MultipleChoicesQuizView
         mainPanel.add(mcqView.getPanel(), "MultipleChoice"); // Add the panel to CardLayout
         gbc.gridy = 2;
 
 
 
         // Creating an instance of TrueFalseQuizView
-        TrueFalseQuizView tfqView = new TrueFalseQuizView(this);
+        tfqView = new TrueFalseQuizView(this);
         mainPanel.add(tfqView.getPanel(), "TrueFalse"); // Add the panel to CardLayout
+        gbc.gridy = 2;
+
+
+        // TODO Uncomment when EstimateQuizView class has been implemented
+
+        // Creating an instance of EstimateQuizView
+        EstimateQuizView eqView = new EstimateQuizView(this);
+        mainPanel.add(eqView.getPanel(), "Estimate"); // Add the panel to CardLayout
         gbc.gridy = 2;
 
 
@@ -196,9 +210,45 @@ public class QuizGameView {
 
 
 
+        // Creating and adding the panel for Estimate Quiz Info to CardLayout Container
+        JPanel estInfoPanel = new JPanel();
+        estInfoPanel.setLayout(new GridBagLayout());
+        estInfoPanel.setBackground(Color.ORANGE);
+        mainPanel.add(estInfoPanel, "EstimateInfo");
+        gbc.gridy = 6;
 
-        MultipleChoicesSummaryView mcsView = new MultipleChoicesSummaryView(this);
+        // Button for switching to Estimate Quiz Info
+        JButton toEstQInfo = new JButton("Estimation Questions");
+        toEstQInfo.setFont(new Font("Arial", Font.BOLD, 24));
+        toEstQInfo.setBackground(Color.WHITE);
+        questionPanel.add(toEstQInfo, gbc); // Creating the Estimation Info Panel
+
+        // Text area and button for switching to Estimation Quiz View
+        JButton toEstQ = new JButton("Next");
+        toEstQ.setFont(new Font("Arial", Font.BOLD, 24));
+        toEstQ.setBackground(Color.WHITE);
+        JTextArea estInfo = new JTextArea(estModel.getEstimateNumberQuizInfo());
+        estInfo.setPreferredSize(new Dimension(500, 300));
+        estInfo.setBackground(Color.ORANGE);
+        estInfo.setFont(new Font("Arial", Font.BOLD, 24));
+        estInfo.setWrapStyleWord(true);
+        estInfo.setLineWrap(true);
+        estInfo.setEditable(false);
+        estInfo.setOpaque(false);
+
+        gbc.gridy = 1;
+        estInfoPanel.add(estInfo, gbc);
+        gbc.gridy = 3;
+        estInfoPanel.add(toEstQ, gbc);
+
+
+
+
+        mcsView = new MultipleChoicesSummaryView(this);
         mainPanel.add(mcsView, "MultipleChoiseSummary");
+
+        tfsView = new TrueFalseSummaryView(this);
+        mainPanel.add(tfsView, "TrueFalseSummary");
 
 
         // Add ActionListeners to the buttons to switch between panels
@@ -238,6 +288,7 @@ public class QuizGameView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(mainPanel, "MultipleChoice"); // Switch to the Multiple Choice Questions panel
+                model.restartQuiz();
             }
         });
 
@@ -254,6 +305,21 @@ public class QuizGameView {
                 cardLayout.show(mainPanel, "TrueFalse"); // Switch to the True Or False Question Panel
             }
         });
+
+        toEstQInfo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(mainPanel, "EstimateInfo"); // Switch to the Estimation Info Panel
+            }
+        });
+
+        toEstQ.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(mainPanel, "Estimate"); // Switch to Estimation Quiz Panel
+            }
+        });
+
 
         // component listener to handle resizing and dynamically update components
         frame.addComponentListener(new ComponentAdapter() {
@@ -293,8 +359,26 @@ public class QuizGameView {
         cardLayout.show(mainPanel, "MultipleChoiseSummary");
     }
 
+    public void showTrueFalseSummaryView(){
+        cardLayout.show(mainPanel, "TrueFalseSummary");
+    }
+
     public Container backToMenu(JPanel cardPanel){
         cardLayout.show(mainPanel, "Menu");
+        mainPanel.remove(mcsView);
+        mcsView = new MultipleChoicesSummaryView(this);
+        mainPanel.add(mcsView, "MultipleChoiseSummary");
+        mainPanel.remove(mcqView.getPanel());
+        mcqView = new MultipleChoicesQuizView(this);
+        mainPanel.add(mcqView.getPanel(), "MultipleChoice");
+
+        // Reset quiz for the true and false questions
+        mainPanel.remove(tfsView);
+        tfsView = new TrueFalseSummaryView(this);
+        mainPanel.add(tfsView, "TrueFalseSummary");
+        mainPanel.remove(tfqView.getPanel());
+        tfqView = new TrueFalseQuizView(this);
+        mainPanel.add(tfqView.getPanel(), "TrueFalse");
         return cardPanel;
     }
 }

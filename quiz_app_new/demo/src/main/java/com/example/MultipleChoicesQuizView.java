@@ -138,7 +138,7 @@ public class MultipleChoicesQuizView {
         Question currentQuestion = model.getCurrentQuestion();
         if (currentQuestion == null) return;
 
-        questionTextarea.setText(currentQuestion.getQuestionText());
+        questionTextarea.setText((model.getCurrentQuestionId()+ 1) + "/" + (model.getTotalQuestions()) + "\n" +currentQuestion.getQuestionText());
 
         // add answer buttons text
         for (int i = 0; i < currentQuestion.getAnswers().size(); i++) {
@@ -190,6 +190,7 @@ public class MultipleChoicesQuizView {
             // If the current question remains the same, it means we're at the end of the quiz.
             questionsAnswered = true;
             checkAllQuestionsAnswered();
+            model.restartQuiz();
             return; // Exit the method to avoid looping back to the same question.
         }
 
@@ -205,6 +206,7 @@ public class MultipleChoicesQuizView {
     private void checkAllQuestionsAnswered(){
         if (questionsAnswered){
             quizGameView.showMultipleChoiseSummaryView();
+            questionsAnswered = false;
         }
     }
 }

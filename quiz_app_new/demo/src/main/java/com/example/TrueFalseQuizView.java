@@ -14,9 +14,11 @@ public class TrueFalseQuizView {
     private QuizGameView quizGameView;
     private String selectedAnswer = "";
     private int score = 0;
+    private boolean quizDone = false;
 
     public TrueFalseQuizView(QuizGameView quizGameView) {
         this.quizGameView = quizGameView;
+        model = new QuizGameModel();
         modeltf = new ModelTrueFalse();
 
         mainPanel = new JPanel(new BorderLayout());
@@ -107,7 +109,7 @@ public class TrueFalseQuizView {
 
     private void loadQuestion() {
         if (!modeltf.isFinished()) {
-            questionTextarea.setText(modeltf.getCurrentQuestionText());
+            questionTextarea.setText((modeltf.getCurrentQuestionId()+ 1) + "/" + (modeltf.getTotalQuestions()) + "\n" + modeltf.getCurrentQuestionText());
             trueButton.setEnabled(true);   // Enable answer buttons for new question
             falseButton.setEnabled(true);
         } else {
@@ -116,10 +118,22 @@ public class TrueFalseQuizView {
             trueButton.setEnabled(false);  // Disable buttons after quiz ends
             falseButton.setEnabled(false);
             nextQuestionButton.setEnabled(false);
+            quizDone = true;
+            showSummaryView();
+        }
+    }
+    private void showSummaryView(){
+        if (quizDone){
+            modeltf.restartQuiz();
+            this.score = 0;
+            quizGameView.showTrueFalseSummaryView();
+            quizDone = false;
         }
     }
 
     private void handleAnswer() {
+        String userName = model.getUserName();
+        User user = User.getInstance(userName);
         // Disable answer buttons after selecting an answer
         trueButton.setEnabled(false);
         falseButton.setEnabled(false);
@@ -130,10 +144,14 @@ public class TrueFalseQuizView {
             modeltf.correctAnswer();  // Update score for correct answer
             message = "Correct! \n" + modeltf.getCurrentQuestionTrivia();
             questionTextarea.setBackground(Color.green);
+            user.addToHistory(modeltf.getCurrentQuestionId(), selectedAnswer);
+            user.correctAnswer();
         } else {
             modeltf.wrongAnswer();
             message = "Wrong! The correct answer is: " + modeltf.getCurrentQuestionCorrectAnswer() + "\n" + modeltf.getCurrentQuestionTrivia();
             questionTextarea.setBackground(Color.red);
+            user.addToHistory(modeltf.getCurrentQuestionId(), selectedAnswer);
+            user.wrongAnswer();
         }
 
         // Show trivia and feedback in a message dialog

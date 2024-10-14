@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class User {
 
-    private static Map<Integer, String> userHistory = new HashMap<>();
+    private Map<Integer, String> userHistory = new HashMap<>();
     private static Map<String,User> instances = new HashMap<>();
 
     private String userName;
@@ -68,5 +68,12 @@ public class User {
 
     public int getScore() {
         return score;
+    }
+
+    public void reset(){
+        this.score = 0;
+        this.correctAnswers = 0;
+        this.wrongAnswers = 0;
+        this.userHistory.clear();
     }
 }

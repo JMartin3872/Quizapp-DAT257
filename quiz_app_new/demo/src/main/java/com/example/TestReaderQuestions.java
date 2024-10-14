@@ -8,11 +8,12 @@ public class TestReaderQuestions {
     
 
     public static void main(String[] args) {
-        QuestionReaderTrueFalse reader = new QuestionReaderTrueFalse();
-        LinkedList<Question> questions = reader.readQuestionFile("True-False-Questions.txt");
+        QuestionReaderEstimateNumber reader = new QuestionReaderEstimateNumber();
+        LinkedList<Question> questions = reader.readQuestionFile("EstimateQuiz-Questions.txt");
         for(Question question : questions){
             System.out.println(question.toString());
         }
+
     }
     
 }
