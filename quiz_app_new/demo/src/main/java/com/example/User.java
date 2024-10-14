@@ -28,19 +28,6 @@ public class User {
         return instances.get(userName);
     }
 
-    // Setters and getters
-    public void setUserName(String userName) {
-        this.userName = userName; 
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setScore(int score){
-        this.score = score;
-    }
-
     public void correctAnswer() {
         this.correctAnswers++;
         score++;
@@ -66,9 +53,6 @@ public class User {
         return wrongAnswers;
     }
 
-    public int getScore() {
-        return score;
-    }
 
     public void reset(){
         this.score = 0;

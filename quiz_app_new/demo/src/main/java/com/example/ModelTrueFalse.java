@@ -8,7 +8,6 @@ public class ModelTrueFalse {
     private int score = 0;
     private int correctAnswers = 0;
     private int wrongAnswers = 0;
-    private int nrQuestions;
 
     private String trueOrFalseInfo = "In this quiz you are tasked with selecting whether the statement is true or false.";
 
@@ -58,14 +57,7 @@ public class ModelTrueFalse {
         return questionMap.get(currentQuestionId).getTrivia();
     }
 
-    // Fetch trivia for the current question
-    public String getQuestionTrivia(int questionId) {
-        Question q = getQuestion(questionId);
-        if (q instanceof QuestionMultipleChoices) {
-            return ((QuestionMultipleChoices) q).getTrivia();
-        }
-        return "";
-    }
+
 
     // Get the correct answer for the current question
     public String getCurrentQuestionCorrectAnswer() {
@@ -105,10 +97,6 @@ public class ModelTrueFalse {
         return trueOrFalseInfo;
     }
 
-    // Sets the username
-    public void setUserName(String userName){
-        this.userName = userName;
-    }
 
     public String getUserName(){
         return this.userName;
@@ -128,13 +116,6 @@ public class ModelTrueFalse {
         this.wrongAnswers++;
     }
 
-    public int getCorrectAnswers() {
-        return correctAnswers;
-    }
-
-    public int getWrongAnswers() {
-        return wrongAnswers;
-    }
 
     public int getScore() {
         return score;

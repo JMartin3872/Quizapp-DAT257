@@ -445,14 +445,7 @@ public class TrueFalseSummaryView extends JPanel{
 
 
     }
-    public JPanel getPanel() {
-        return cardPanel; // Return the panel to be added to the CardLayout
-    }
 
-    // Set the CardLayout reference (optional if you manage it differently)
-    public void setCardLayout(CardLayout cardLayout) {
-        this.cardLayout = cardLayout;
-    }
 }
 
 

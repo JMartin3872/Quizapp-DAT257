@@ -12,7 +12,7 @@ public class QuizGameView {
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private JLabel titleLabel;
-    private JButton startButton, optionsButton, exitButton;
+    private JButton startButton, exitButton;
     private QuizGameModel model; // Model reference
     private ModelTrueFalse tfmodel;
     private ModelEstimateNumber estModel;
@@ -65,7 +65,6 @@ public class QuizGameView {
 
         //  buttons for the quiz menu
         startButton = new JButton("Start Quiz");
-        optionsButton = new JButton("Options");
         exitButton = new JButton("Exit");
 
         // button color etc
@@ -73,10 +72,6 @@ public class QuizGameView {
         startButton.setBackground(buttonColor);
         startButton.setForeground(Color.black);
         startButton.setFocusPainted(false);
-
-        optionsButton.setBackground(buttonColor);
-        optionsButton.setForeground(Color.black);
-        optionsButton.setFocusPainted(false);
 
         exitButton.setBackground(buttonColor);
         exitButton.setForeground(Color.black);
@@ -91,10 +86,8 @@ public class QuizGameView {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         menuPanel.add(startButton, gbc);
 
-        gbc.gridy = 2;
-        menuPanel.add(optionsButton, gbc);
 
-        gbc.gridy = 3;
+        gbc.gridy = 2;
         menuPanel.add(exitButton, gbc);
 
         // creating the "Start Quiz" panel (another page)
@@ -105,17 +98,11 @@ public class QuizGameView {
         quizPanel.add(quizLabel);
 
 
-        // creating the "Options" panel (another page)
-        JPanel optionsPanel = new JPanel();
-        optionsPanel.setBackground(new Color(204, 229, 255)); // different background color
-        JLabel optionsLabel = new JLabel("Options Page");
-        optionsLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        optionsPanel.add(optionsLabel);
+
 
         // Add panels to the CardLayout container
         mainPanel.add(menuPanel, "Menu");
         mainPanel.add(quizPanel, "Quiz");
-        mainPanel.add(optionsPanel, "Options");
 
         JPanel questionPanel = new JPanel();
         questionPanel.setLayout(new GridBagLayout());
@@ -136,7 +123,6 @@ public class QuizGameView {
         gbc.gridy = 2;
 
 
-        // TODO Uncomment when EstimateQuizView class has been implemented
 
         // Creating an instance of EstimateQuizView
         EstimateQuizView eqView = new EstimateQuizView(this);
@@ -263,12 +249,7 @@ public class QuizGameView {
             }
         });
 
-        optionsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(mainPanel, "Options"); // switch to the Options panel
-            }
-        });
+
 
         exitButton.addActionListener(new ActionListener() {
             @Override
@@ -335,7 +316,6 @@ public class QuizGameView {
                 // Update stuff
                 titleLabel.setFont(newFont);
                 startButton.setFont(newFont);
-                optionsButton.setFont(newFont);
                 exitButton.setFont(newFont);
 
                 //  new button size based on the frame size
@@ -345,7 +325,6 @@ public class QuizGameView {
 
                 // update button sizes
                 startButton.setPreferredSize(newButtonSize);
-                optionsButton.setPreferredSize(newButtonSize);
                 exitButton.setPreferredSize(newButtonSize);
 
                 // reval n repaint the panel to apply changes

@@ -102,29 +102,15 @@ public class ModelEstimateNumber {
         return estimateNumberInfo;
     }
 
-    // Sets the username
-    public void setUserName(String userName){
-        this.userName = userName;
-    }
-
     // For now, these functions reside in the model. Will be moved to User class later
     public void correctAnswer() {
         this.correctAnswers++;
         score++;
     }
-
     public void wrongAnswer() {
         this.wrongAnswers++;
     }
 
-    public int getCorrectAnswers() {
-        return correctAnswers;
-    }
-
-    public int getWrongAnswers() {
-        return wrongAnswers;
-    }
-    
     public int getScore() {
         return score;
     }

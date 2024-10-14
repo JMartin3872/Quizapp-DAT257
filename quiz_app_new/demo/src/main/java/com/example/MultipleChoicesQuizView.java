@@ -18,19 +18,6 @@ public class MultipleChoicesQuizView {
     private boolean questionsAnswered = false;
     private boolean isAnswerSubmitted = false; // Track whether the answer has been submitted
 
-    public MultipleChoicesQuizView() {
-        model = new QuizGameModel();
-
-        // Create the main panel instead of a JFrame
-        mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setPreferredSize(new Dimension(720, 480)); // Set preferred size for consistency
-
-        // Set up the UI
-        setupUI();
-
-        // Load the first question
-        loadQuestion();
-    }
 
     public MultipleChoicesQuizView(QuizGameView quizGameView) {
         this.quizGameView = quizGameView;

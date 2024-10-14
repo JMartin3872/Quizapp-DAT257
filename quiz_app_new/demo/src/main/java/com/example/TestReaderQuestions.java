@@ -3,9 +3,6 @@ import java.util.*;
 import java.io.*;
 
 public class TestReaderQuestions {
-    
-    
-    
 
     public static void main(String[] args) {
         QuestionReaderEstimateNumber reader = new QuestionReaderEstimateNumber();
