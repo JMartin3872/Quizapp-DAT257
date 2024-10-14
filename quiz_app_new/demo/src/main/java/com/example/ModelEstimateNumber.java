@@ -82,6 +82,9 @@ public class ModelEstimateNumber {
         if (questionMap.containsKey(currentQuestionId + 1)) {
             currentQuestionId++;
         }
+        else {
+            currentQuestionId = getTotalQuestions();
+        }
     }
 
     // Returns the total amount of questions in the quiz
@@ -91,7 +94,7 @@ public class ModelEstimateNumber {
 
     // Checks whether the current quiz is finished
     public boolean isFinished() {
-        return currentQuestionId >= (questionMap.size() - 1);
+        return currentQuestionId >= questionMap.size();
     }
 
     // Gets info about True or False quiz
