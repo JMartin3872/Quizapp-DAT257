@@ -164,6 +164,14 @@ public class MultipleChoicesQuizView {
 
         // Change submit button to "Next Question"
         submitButton.setText("Next Question");
+
+        //Disable buttons after answering
+        for (JButton button : answerButtons) {
+
+            button.setEnabled(false);
+
+        };
+
         isAnswerSubmitted = true; // Mark that the answer was submitted
 
     }
@@ -187,6 +195,13 @@ public class MultipleChoicesQuizView {
         selectedAnswer = -1; // Reset selected answer
         isAnswerSubmitted = false; // Reset submission state
         submitButton.setText("Submit Answer"); // Revert button text to "Submit Answer"
+
+        //turn buttons back on
+        for (JButton button : answerButtons) {
+
+            button.setEnabled(true);
+
+        };
 
     }
 
