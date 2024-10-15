@@ -157,10 +157,16 @@ public class QuizGameView {
         mcInfo.setEditable(false);
         mcInfo.setOpaque(false);
 
+        JButton toQuestionMenuMC = new JButton("Back");
+        toQuestionMenuMC.setFont(new Font("Arial", Font.BOLD, 24));
+        toQuestionMenuMC.setBackground(Color.WHITE);
+
         gbc.gridy = 1;
         mcInfoPanel.add(mcInfo, gbc);
         gbc.gridy = 3;
         mcInfoPanel.add(toMCQ, gbc);
+        gbc.gridy = GridBagConstraints.SOUTH;
+        mcInfoPanel.add(toQuestionMenuMC, gbc);
 
 
         // Creating and adding the panel for True Or False Quiz Info to CardLayout Container
@@ -189,11 +195,16 @@ public class QuizGameView {
         tfInfo.setEditable(false);
         tfInfo.setOpaque(false);
 
+        JButton toQuestionMenuTF = new JButton("Back");
+        toQuestionMenuTF.setFont(new Font("Arial", Font.BOLD,24));
+        toQuestionMenuTF.setBackground(Color.WHITE);
+
         gbc.gridy = 1;
         tfInfoPanel.add(tfInfo, gbc);
         gbc.gridy = 3;
         tfInfoPanel.add(toTFQ, gbc);
-
+        gbc.gridy = 5;
+        tfInfoPanel.add(toQuestionMenuTF, gbc);
 
 
         // Creating and adding the panel for Estimate Quiz Info to CardLayout Container
@@ -222,12 +233,27 @@ public class QuizGameView {
         estInfo.setEditable(false);
         estInfo.setOpaque(false);
 
+        JButton toQuestionMenuEst = new JButton("Back");
+        toQuestionMenuEst.setFont(new Font("Arial", Font.BOLD, 24));
+        toQuestionMenuEst.setBackground(Color.WHITE);
+
+
+
         gbc.gridy = 1;
         estInfoPanel.add(estInfo, gbc);
         gbc.gridy = 3;
         estInfoPanel.add(toEstQ, gbc);
+        gbc.gridy= 5;
+        estInfoPanel.add(toQuestionMenuEst, gbc);
 
 
+        // Button to return to main menu
+        gbc.gridy = 10;
+        JButton toMainMenu = new JButton("Back");
+        toMainMenu.setFont(new Font("Arial", Font.BOLD, 24));
+        toMainMenu.setBackground(Color.WHITE);
+        questionPanel.add(toMainMenu, gbc);
+        
 
 
         mcsView = new MultipleChoicesSummaryView(this);
@@ -298,6 +324,34 @@ public class QuizGameView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(mainPanel, "Estimate"); // Switch to Estimation Quiz Panel
+            }
+        });
+
+        toMainMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(mainPanel, "Menu");
+                //QuizGameController controller = new QuizGameController();
+            }
+        });
+        toQuestionMenuEst.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                cardLayout.show(mainPanel, "Question");
+            }
+        });
+
+        toQuestionMenuTF.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                cardLayout.show(mainPanel, "Question");
+            }
+        });
+        
+        toQuestionMenuMC.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                cardLayout.show(mainPanel, "Question");
             }
         });
 
