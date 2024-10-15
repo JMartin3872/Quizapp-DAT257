@@ -59,9 +59,6 @@ public class QuizGameModel {
         if (questionMap.containsKey(currentQuestionId + 1)) {
             currentQuestionId++;
         }
-        else {
-            currentQuestionId = getTotalQuestions();
-        }
     }
 
     // Returns the total amount of questions in the quiz
