@@ -60,7 +60,7 @@ public class QuizGameView {
         gbc.insets = new Insets(10, 10, 10, 10); // padding around elements
 
         // label for the title
-        titleLabel = new JLabel("Best quiz ever");
+        titleLabel = new JLabel("Sustainable quiz!");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
 
         //  buttons for the quiz menu
@@ -106,7 +106,7 @@ public class QuizGameView {
 
         JPanel questionPanel = new JPanel();
         questionPanel.setLayout(new GridBagLayout());
-        questionPanel.setBackground(new Color(255, 255, 0 )); // different background color
+        questionPanel.setBackground(new Color(37, 219, 131)); // different background color
         mainPanel.add(questionPanel, "Question");
         gbc.gridy = 0;
 

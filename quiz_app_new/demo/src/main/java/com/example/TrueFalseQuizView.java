@@ -35,7 +35,7 @@ public class TrueFalseQuizView {
 
     private void setupUI() {
         JPanel questionPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        questionPanel.setBackground(Color.pink);
+        questionPanel.setBackground(new Color(235, 232, 106));
         questionTextarea = new JTextArea();
         questionTextarea.setFont(new Font("Arial", Font.BOLD, 24));
         questionTextarea.setEditable(false);
@@ -47,7 +47,7 @@ public class TrueFalseQuizView {
         mainPanel.add(questionPanel, BorderLayout.NORTH);
 
         JPanel answerPanel = new JPanel(new GridBagLayout());
-        answerPanel.setBackground(Color.pink);
+        answerPanel.setBackground(new Color(235, 232, 106));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(130, 30, 130, 30);
         //gbc.fill = GridBagConstraints.BOTH;
