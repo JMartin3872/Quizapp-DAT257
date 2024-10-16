@@ -48,7 +48,7 @@ public class TrueFalseQuizView {
         mainPanel.add(questionPanel, BorderLayout.NORTH);
 
         JPanel answerPanel = new JPanel(new GridBagLayout());
-        answerPanel.setPreferredSize(new Dimension(720, 100));
+        answerPanel.setPreferredSize(new Dimension(720, 80));
         answerPanel.setBackground(Color.pink);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(130, 30, 130, 30);
@@ -91,11 +91,12 @@ public class TrueFalseQuizView {
             }
         });
         
-        //We are creating a new panel to contain next question and menu buttons!
+        // Creating a new panel to contain Main menu and next question buttons
         JPanel backOrNextPanel = new JPanel(new FlowLayout());
         backOrNextPanel.setBackground(Color.pink);
-        backOrNextPanel.setPreferredSize(new Dimension(720, 100));
+        backOrNextPanel.setPreferredSize(new Dimension(720, 80));
         
+        // Creating next question button
         nextQuestionButton = new JButton("Next Question");
         nextQuestionButton.setEnabled(false);  // Initially disabled
         nextQuestionButton.setFocusPainted(false);
@@ -112,7 +113,7 @@ public class TrueFalseQuizView {
             }
         });
 
-
+        // Creating Main menu button
         toMainMenuButton = new JButton("Main Menu");
         toMainMenuButton.setFont(new Font("Arial", Font.BOLD, 20));
         toMainMenuButton.setBackground(Color.WHITE);
@@ -132,6 +133,7 @@ public class TrueFalseQuizView {
         backOrNextPanel.add(nextQuestionButton, gbc);
 
         mainPanel.add(backOrNextPanel, BorderLayout.SOUTH);
+        // Keep the buttons at the bottom
     }
 
     private void loadQuestion() {

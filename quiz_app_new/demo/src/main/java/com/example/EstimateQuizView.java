@@ -77,16 +77,17 @@ public class EstimateQuizView {
         answerPanel.add(estimateInputField, gbc);
         mainPanel.add(answerPanel, BorderLayout.CENTER);
         
-        //We are creating a new panel to contain the main menu and next question buttons
+        // Creating a new panel to contain the Main menu and Submit/Next buttons
         JPanel backOrNextPanel = new JPanel(new FlowLayout());
         backOrNextPanel.setBackground(new Color(204, 229, 255));
         backOrNextPanel.setPreferredSize(new Dimension(720, 100));
         
+        // Creating Submit/Next button
         nextQuestionButton = new JButton("Submit Answer");  // Initial text for the button
         nextQuestionButton.setFocusPainted(false);
         nextQuestionButton.setBackground(Color.WHITE);
         nextQuestionButton.setFont(new Font("Arial", Font.BOLD, 20));
-        nextQuestionButton.setPreferredSize(new Dimension(300, 55)); // Make it full width
+        nextQuestionButton.setPreferredSize(new Dimension(300, 55));
         nextQuestionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -104,7 +105,7 @@ public class EstimateQuizView {
             }
         });
 
-
+        // Creating Main menu button with Action Listener
         JButton toMainMenuButton = new JButton("Main Menu");
         toMainMenuButton.setFont(new Font("Arial", Font.BOLD, 20));
         toMainMenuButton.setBackground(Color.WHITE);
@@ -124,7 +125,7 @@ public class EstimateQuizView {
         backOrNextPanel.add(nextQuestionButton, gbc);
 
         mainPanel.add(backOrNextPanel, BorderLayout.SOUTH);
-         // Keep the button at the bottom
+         // Keep the buttons at the bottom
     }
 
     private void loadQuestion() {

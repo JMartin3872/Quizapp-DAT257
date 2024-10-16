@@ -157,6 +157,7 @@ public class QuizGameView {
         mcInfo.setEditable(false);
         mcInfo.setOpaque(false);
 
+        // Button to go back from Multiple Choice Info view to Question view
         JButton toQuestionMenuMC = new JButton("Back");
         toQuestionMenuMC.setFont(new Font("Arial", Font.BOLD, 24));
         toQuestionMenuMC.setBackground(Color.WHITE);
@@ -195,6 +196,7 @@ public class QuizGameView {
         tfInfo.setEditable(false);
         tfInfo.setOpaque(false);
 
+        // Button to go back from True/False Info view to Question view
         JButton toQuestionMenuTF = new JButton("Back");
         toQuestionMenuTF.setFont(new Font("Arial", Font.BOLD,24));
         toQuestionMenuTF.setBackground(Color.WHITE);
@@ -233,6 +235,7 @@ public class QuizGameView {
         estInfo.setEditable(false);
         estInfo.setOpaque(false);
 
+        // Button to go back from Estimate Info view to Question view
         JButton toQuestionMenuEst = new JButton("Back");
         toQuestionMenuEst.setFont(new Font("Arial", Font.BOLD, 24));
         toQuestionMenuEst.setBackground(Color.WHITE);
@@ -247,7 +250,7 @@ public class QuizGameView {
         estInfoPanel.add(toQuestionMenuEst, gbc);
 
 
-        // Button to return to main menu
+        // Button to return to main menu from Question view
         gbc.gridy = 10;
         JButton toMainMenu = new JButton("Back");
         toMainMenu.setFont(new Font("Arial", Font.BOLD, 24));
@@ -330,27 +333,27 @@ public class QuizGameView {
         toMainMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(mainPanel, "Menu");
+                cardLayout.show(mainPanel, "Menu"); // Switch to Main menu
             }
         });
         toQuestionMenuEst.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                cardLayout.show(mainPanel, "Question");
+                cardLayout.show(mainPanel, "Question"); // Switch to Question view from Estimate Info view
             }
         });
 
         toQuestionMenuTF.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                cardLayout.show(mainPanel, "Question");
+                cardLayout.show(mainPanel, "Question"); // Switch to Question view from True/False Info view
             }
         });
         
         toQuestionMenuMC.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                cardLayout.show(mainPanel, "Question");
+                cardLayout.show(mainPanel, "Question"); // Switch to Question view from Multiple Choice Info view
             }
         });
 

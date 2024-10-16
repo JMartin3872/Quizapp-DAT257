@@ -86,7 +86,7 @@ public class MultipleChoicesQuizView {
             centerPanel.add(answerButtons[i], gbc);
         }
 
-        //We are creating a new panel to contain the main menu and next question buttons
+        // Creating a new panel to contain the main menu and next question buttons
         JPanel backOrNextPanel = new JPanel(new FlowLayout());
         backOrNextPanel.setBackground(new Color(232, 136, 216));
         backOrNextPanel.setPreferredSize(new Dimension(720, 100));
@@ -108,9 +108,7 @@ public class MultipleChoicesQuizView {
             }
         });
 
-
-
-
+        // Create Main menu button
         JButton toMainMenuButton = new JButton("Main Menu");
         toMainMenuButton.setFont(new Font("Arial", Font.BOLD, 20));
         toMainMenuButton.setBackground(Color.WHITE);
@@ -130,6 +128,7 @@ public class MultipleChoicesQuizView {
         backOrNextPanel.add(submitButton, gbc);
 
         mainPanel.add(backOrNextPanel, BorderLayout.SOUTH);
+        // Keep buttons at the bottom
     }
 
     private void highlightSelectedButton(int index) {
