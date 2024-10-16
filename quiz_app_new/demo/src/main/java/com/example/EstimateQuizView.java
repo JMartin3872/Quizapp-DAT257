@@ -12,6 +12,7 @@ public class EstimateQuizView {
     private JButton nextQuestionButton;  // This button will serve dual purposes
     private ModelEstimateNumber model;
     private QuizGameView quizGameView;
+    private CardLayout cardLayout;
 
     public EstimateQuizView(QuizGameView quizGameView) {
         this.quizGameView = quizGameView;
@@ -75,13 +76,17 @@ public class EstimateQuizView {
         gbc.gridx = 1;
         answerPanel.add(estimateInputField, gbc);
         mainPanel.add(answerPanel, BorderLayout.CENTER);
-
-        // Setting up the "Next Question" button at the bottom
+        
+        //We are creating a new panel to contain the main menu and next question buttons
+        JPanel backOrNextPanel = new JPanel(new FlowLayout());
+        backOrNextPanel.setBackground(new Color(204, 229, 255));
+        backOrNextPanel.setPreferredSize(new Dimension(720, 100));
+        
         nextQuestionButton = new JButton("Submit Answer");  // Initial text for the button
         nextQuestionButton.setFocusPainted(false);
         nextQuestionButton.setBackground(Color.WHITE);
-        nextQuestionButton.setFont(new Font("Arial", Font.BOLD, 18));
-        nextQuestionButton.setPreferredSize(new Dimension(720, 65)); // Make it full width
+        nextQuestionButton.setFont(new Font("Arial", Font.BOLD, 20));
+        nextQuestionButton.setPreferredSize(new Dimension(300, 55)); // Make it full width
         nextQuestionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -99,7 +104,27 @@ public class EstimateQuizView {
             }
         });
 
-        mainPanel.add(nextQuestionButton, BorderLayout.SOUTH); // Keep the button at the bottom
+
+        JButton toMainMenuButton = new JButton("Main Menu");
+        toMainMenuButton.setFont(new Font("Arial", Font.BOLD, 20));
+        toMainMenuButton.setBackground(Color.WHITE);
+        toMainMenuButton.setPreferredSize(new Dimension(300, 55));
+        toMainMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(quizGameView.backToMenu(mainPanel), "Main Menu");
+            }
+        });
+
+        gbc.gridy = 0;
+        gbc.gridx = 0;
+        backOrNextPanel.add(toMainMenuButton, gbc);
+        gbc.gridy = 0;
+        gbc.gridx = 1;
+        backOrNextPanel.add(nextQuestionButton, gbc);
+
+        mainPanel.add(backOrNextPanel, BorderLayout.SOUTH);
+         // Keep the button at the bottom
     }
 
     private void loadQuestion() {

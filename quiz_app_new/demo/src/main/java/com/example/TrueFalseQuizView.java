@@ -7,8 +7,9 @@ import java.awt.event.ActionListener;
 
 public class TrueFalseQuizView {
     private JPanel mainPanel;
+    private CardLayout cardLayout;
     private JTextArea questionTextarea;
-    private JButton trueButton, falseButton, nextQuestionButton;
+    private JButton trueButton, falseButton, nextQuestionButton, toMainMenuButton;
     private QuizGameModel model;
     private ModelTrueFalse modeltf;
     private QuizGameView quizGameView;
@@ -35,7 +36,7 @@ public class TrueFalseQuizView {
 
     private void setupUI() {
         JPanel questionPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        questionPanel.setBackground(new Color(235, 232, 106));
+        questionPanel.setBackground(Color.pink);
         questionTextarea = new JTextArea();
         questionTextarea.setFont(new Font("Arial", Font.BOLD, 24));
         questionTextarea.setEditable(false);
@@ -47,7 +48,8 @@ public class TrueFalseQuizView {
         mainPanel.add(questionPanel, BorderLayout.NORTH);
 
         JPanel answerPanel = new JPanel(new GridBagLayout());
-        answerPanel.setBackground(new Color(235, 232, 106));
+        answerPanel.setPreferredSize(new Dimension(720, 100));
+        answerPanel.setBackground(Color.pink);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(130, 30, 130, 30);
         //gbc.fill = GridBagConstraints.BOTH;
@@ -88,13 +90,18 @@ public class TrueFalseQuizView {
                 handleAnswer();  // Handle answer after selection
             }
         });
-
+        
+        //We are creating a new panel to contain next question and menu buttons!
+        JPanel backOrNextPanel = new JPanel(new FlowLayout());
+        backOrNextPanel.setBackground(Color.pink);
+        backOrNextPanel.setPreferredSize(new Dimension(720, 100));
+        
         nextQuestionButton = new JButton("Next Question");
         nextQuestionButton.setEnabled(false);  // Initially disabled
         nextQuestionButton.setFocusPainted(false);
         nextQuestionButton.setBackground(Color.WHITE);
         nextQuestionButton.setFont(new Font("Arial", Font.BOLD, 20));
-        nextQuestionButton.setPreferredSize(new Dimension(400, 65));
+        nextQuestionButton.setPreferredSize(new Dimension(300, 55));
         nextQuestionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -104,7 +111,27 @@ public class TrueFalseQuizView {
                 nextQuestionButton.setEnabled(false);  // Disable next question button until answered
             }
         });
-        mainPanel.add(nextQuestionButton, BorderLayout.SOUTH);
+
+
+        toMainMenuButton = new JButton("Main Menu");
+        toMainMenuButton.setFont(new Font("Arial", Font.BOLD, 20));
+        toMainMenuButton.setBackground(Color.WHITE);
+        toMainMenuButton.setPreferredSize(new Dimension(300, 55));
+        toMainMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(quizGameView.backToMenu(mainPanel), "Main Menu");
+            }
+        });
+
+        gbc.gridy = 0;
+        gbc.gridx = 0;
+        backOrNextPanel.add(toMainMenuButton, gbc);
+        gbc.gridy = 0;
+        gbc.gridx = 1;
+        backOrNextPanel.add(nextQuestionButton, gbc);
+
+        mainPanel.add(backOrNextPanel, BorderLayout.SOUTH);
     }
 
     private void loadQuestion() {

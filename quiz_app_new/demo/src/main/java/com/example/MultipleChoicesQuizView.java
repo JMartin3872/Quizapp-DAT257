@@ -17,6 +17,7 @@ public class MultipleChoicesQuizView {
     private QuizGameView quizGameView;
     private boolean questionsAnswered = false;
     private boolean isAnswerSubmitted = false; // Track whether the answer has been submitted
+    private CardLayout cardLayout;
 
 
     public MultipleChoicesQuizView(QuizGameView quizGameView) {
@@ -85,11 +86,16 @@ public class MultipleChoicesQuizView {
             centerPanel.add(answerButtons[i], gbc);
         }
 
+        //We are creating a new panel to contain the main menu and next question buttons
+        JPanel backOrNextPanel = new JPanel(new FlowLayout());
+        backOrNextPanel.setBackground(new Color(232, 136, 216));
+        backOrNextPanel.setPreferredSize(new Dimension(720, 100));
+
         // Create submit button
         submitButton = new JButton("Submit Answer");
         submitButton.setFont(new Font("Arial", Font.BOLD, 20));
         submitButton.setBackground(Color.WHITE);
-        submitButton.setPreferredSize(new Dimension(150, 50));
+        submitButton.setPreferredSize(new Dimension(300, 55));
         submitButton.setFocusPainted(false);
 
         submitButton.addActionListener(new ActionListener() {
@@ -101,7 +107,29 @@ public class MultipleChoicesQuizView {
                 }
             }
         });
-        mainPanel.add(submitButton, BorderLayout.SOUTH);
+
+
+
+
+        JButton toMainMenuButton = new JButton("Main Menu");
+        toMainMenuButton.setFont(new Font("Arial", Font.BOLD, 20));
+        toMainMenuButton.setBackground(Color.WHITE);
+        toMainMenuButton.setPreferredSize(new Dimension(300, 55));
+        toMainMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(quizGameView.backToMenu(mainPanel), "Main Menu");
+            }
+        });
+
+        gbc.gridy = 0;
+        gbc.gridx = 0;
+        backOrNextPanel.add(toMainMenuButton, gbc);
+        gbc.gridy = 0;
+        gbc.gridx = 1;
+        backOrNextPanel.add(submitButton, gbc);
+
+        mainPanel.add(backOrNextPanel, BorderLayout.SOUTH);
     }
 
     private void highlightSelectedButton(int index) {

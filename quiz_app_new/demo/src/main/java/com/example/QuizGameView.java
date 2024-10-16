@@ -331,7 +331,6 @@ public class QuizGameView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(mainPanel, "Menu");
-                //QuizGameController controller = new QuizGameController();
             }
         });
         toQuestionMenuEst.addActionListener(new ActionListener() {
