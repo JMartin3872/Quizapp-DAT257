@@ -20,6 +20,8 @@ public class QuizGameView {
     private MultipleChoicesQuizView mcqView;
     private TrueFalseQuizView tfqView;
     private TrueFalseSummaryView tfsView;
+    private EstimateQuizView eqView;
+    private EstimateSummaryView esView;
 
     public QuizGameView(QuizGameModel model, ModelTrueFalse tfmodel, ModelEstimateNumber estModel) {
 
@@ -125,7 +127,7 @@ public class QuizGameView {
 
 
         // Creating an instance of EstimateQuizView
-        EstimateQuizView eqView = new EstimateQuizView(this);
+        eqView = new EstimateQuizView(this);
         mainPanel.add(eqView.getPanel(), "Estimate"); // Add the panel to CardLayout
         gbc.gridy = 2;
 
@@ -265,6 +267,9 @@ public class QuizGameView {
         tfsView = new TrueFalseSummaryView(this);
         mainPanel.add(tfsView, "TrueFalseSummary");
 
+        esView = new EstimateSummaryView(this);
+        mainPanel.add(esView, "EstimateSummary");
+
 
         // Add ActionListeners to the buttons to switch between panels
         startButton.addActionListener(new ActionListener() {
@@ -398,6 +403,10 @@ public class QuizGameView {
         cardLayout.show(mainPanel, "TrueFalseSummary");
     }
 
+    public void showEstimateSummaryView(){
+        cardLayout.show(mainPanel, "EstimateSummary");
+    }
+
     public Container backToMenu(JPanel cardPanel){
         cardLayout.show(mainPanel, "Menu");
         mainPanel.remove(mcsView);
@@ -414,6 +423,14 @@ public class QuizGameView {
         mainPanel.remove(tfqView.getPanel());
         tfqView = new TrueFalseQuizView(this);
         mainPanel.add(tfqView.getPanel(), "TrueFalse");
+
+        // Reset quiz for the estimate questions
+        mainPanel.remove(esView);
+        esView = new EstimateSummaryView(this);
+        mainPanel.add(esView, "EstimateSummary");
+        mainPanel.remove(eqView.getPanel());
+        eqView = new EstimateQuizView(this);
+        mainPanel.add(eqView.getPanel(), "Estimate");
         return cardPanel;
     }
 }

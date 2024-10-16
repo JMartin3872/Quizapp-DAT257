@@ -29,6 +29,11 @@ public class ModelEstimateNumber {
         return questionMap.get(currentQuestionId);
     }
 
+    // Get question based on ID
+    public Question getQuestion(int questionId) {
+        return questionMap.get(questionId);
+    }
+
     // Get current question ID
     public int getCurrentQuestionId() {
         return getCurrentQuestion().getQuestionId();
@@ -39,6 +44,11 @@ public class ModelEstimateNumber {
         return getCurrentQuestion().getQuestionText();
     }
 
+    // Get question text based on ID
+    public String getQuestionText(int questionId) {
+        return getQuestion(questionId).getQuestionText();
+    }
+
     // Fetch trivia for the current question
     public String getCurrentQuestionTrivia() {
         return questionMap.get(currentQuestionId).getTrivia();
@@ -47,6 +57,11 @@ public class ModelEstimateNumber {
     // Get the correct answer for the current question
     public String getCurrentQuestionCorrectAnswer() {
         return questionMap.get(currentQuestionId).getCorrectAnswer();
+    }
+
+    // Get the correct answer for the question based on ID
+    public String getQuestionCorrectAnswer(int questionId) {
+        return questionMap.get(questionId).getCorrectAnswer();
     }
 
     //checks whether or not the useranswer is within -+ 10% of the correct answer,
@@ -100,6 +115,14 @@ public class ModelEstimateNumber {
     // Gets info about True or False quiz
     public String getEstimateNumberQuizInfo() {
         return estimateNumberInfo;
+    }
+
+    public String getUserName(){
+        return this.userName;
+    }
+
+    public void restartQuiz(){
+        this.currentQuestionId = 0;
     }
 
     // For now, these functions reside in the model. Will be moved to User class later

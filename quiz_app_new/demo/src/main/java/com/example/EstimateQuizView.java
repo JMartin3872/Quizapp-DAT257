@@ -13,10 +13,13 @@ public class EstimateQuizView {
     private ModelEstimateNumber model;
     private QuizGameView quizGameView;
     private CardLayout cardLayout;
+    private QuizGameModel modelq;
+    private boolean quizDone = false;
 
     public EstimateQuizView(QuizGameView quizGameView) {
         this.quizGameView = quizGameView;
         model = new ModelEstimateNumber();
+        modelq = new QuizGameModel();
 
         mainPanel = new JPanel(new BorderLayout());
         mainPanel.setPreferredSize(new Dimension(720, 480));
@@ -141,10 +144,22 @@ public class EstimateQuizView {
             questionTextarea.setText("Quiz finished! Your score: " + model.getScore());
             estimateInputField.setEnabled(false);  // Disable input and buttons after quiz ends
             nextQuestionButton.setEnabled(false); // Disable the next question button
+            quizDone = true;
+            showSummaryView();
+        }
+    }
+
+    private void showSummaryView(){
+        if (quizDone){
+            model.restartQuiz();
+            quizGameView.showEstimateSummaryView();
+            quizDone = false;
         }
     }
 
     private void handleAnswer() {
+        String userName = modelq.getUserName();
+        User user = User.getInstance(userName);
         String userAnswer = estimateInputField.getText().trim();
         if (userAnswer.isEmpty()) {
             JOptionPane.showMessageDialog(mainPanel, "Please enter a number estimate.");
@@ -157,10 +172,14 @@ public class EstimateQuizView {
             model.correctAnswer();  // Update score for correct answer
             message = "Correct! \n" + model.getCurrentQuestionTrivia();
             questionTextarea.setBackground(Color.green);
+            user.addToHistory(model.getCurrentQuestionId(), userAnswer);
+            user.correctAnswer();
         } else {
             model.wrongAnswer();
             message = "Wrong! The correct estimate was: " + model.getCurrentQuestionCorrectAnswer() + "\n" + model.getCurrentQuestionTrivia();
             questionTextarea.setBackground(Color.red);
+            user.addToHistory(model.getCurrentQuestionId(), userAnswer);
+            user.wrongAnswer();
         }
 
         // Show trivia and feedback in the text area
