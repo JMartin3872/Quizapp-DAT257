@@ -18,4 +18,5 @@ public class ModelTrueFalseTest {
         int afterScore = modelTrueFalse.getScore();
         Assertions.assertEquals(1, afterScore);      
     }
+
 }

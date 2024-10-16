@@ -32,6 +32,10 @@ public class TrueFalseSummaryView extends JPanel{
 
     private Boolean animation = false;
 
+    public TrueFalseSummaryView(){
+
+    }
+
     public TrueFalseSummaryView(QuizGameView quizGameView) {
         this.quizGameView = quizGameView;
         setSize(720, 480);
@@ -178,7 +182,7 @@ public class TrueFalseSummaryView extends JPanel{
         setVisible(true);
     }
 
-    private String feedbackMessage(int proportion){
+    public String feedbackMessage(int proportion){
         String topText;
         if (proportion >= 90){
             topText = "Excellent Job!";
