@@ -295,7 +295,7 @@ public class TrueFalseSummaryView extends JPanel{
         String userName = m.getUserName();
         User user = User.getInstance(userName);
         dataModel.setRowCount(0); // removes all rows
-        for (int i = 0; i < m.getTotalQuestions() - 1; i++){
+        for (int i = 0; i < m.getTotalQuestions(); i++){
             String userAnswer;
             String correctAnswer = m.getQuestionCorrectAnswer(i);
             if (user.getHistory().get(i) == null){
