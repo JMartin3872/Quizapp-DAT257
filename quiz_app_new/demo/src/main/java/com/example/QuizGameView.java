@@ -80,24 +80,32 @@ public class QuizGameView {
         exitButton.setFocusPainted(false);
 
         // adding buttons and title to the panel
+
         gbc.gridx = 0;
         gbc.gridy = 0;
+        ImageIcon logoIcon = new ImageIcon("sustainabilityLogo.png");
+        menuPanel.add(new JLabel(logoIcon));
+
+        //gbc.gridx = 0;
+        gbc.gridy = 1;
+        
         menuPanel.add(titleLabel, gbc);
 
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         menuPanel.add(startButton, gbc);
 
 
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         menuPanel.add(exitButton, gbc);
+        
 
         // creating the "Start Quiz" panel (another page)
         JPanel quizPanel = new JPanel();
         quizPanel.setBackground(new Color(255, 229, 204)); // different background color
         JLabel quizLabel = new JLabel("Quiz Page");
         quizLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        quizPanel.add(quizLabel);
+        quizPanel.add(quizLabel, BorderLayout.NORTH);
 
 
 
@@ -136,7 +144,7 @@ public class QuizGameView {
         // Creating and adding the panel for Multiple Choice Quiz Info to CardLayout Container
         JPanel mcInfoPanel = new JPanel();
         mcInfoPanel.setLayout(new GridBagLayout());
-        mcInfoPanel.setBackground(Color.ORANGE);
+        mcInfoPanel.setBackground(new Color(232, 136, 216));
         mainPanel.add(mcInfoPanel, "MultipleChoiceInfo");
         gbc.gridy = 2;
 
@@ -152,7 +160,7 @@ public class QuizGameView {
         toMCQ.setBackground(Color.WHITE);
         JTextArea mcInfo = new JTextArea(model.getMCQuizInfo());
         mcInfo.setPreferredSize(new Dimension(500, 300));
-        mcInfo.setBackground(Color.ORANGE);
+        mcInfo.setBackground(new Color(232, 136, 216));
         mcInfo.setFont(new Font("Arial", Font.BOLD, 24));
         mcInfo.setWrapStyleWord(true);
         mcInfo.setLineWrap(true);
@@ -175,7 +183,7 @@ public class QuizGameView {
         // Creating and adding the panel for True Or False Quiz Info to CardLayout Container
         JPanel tfInfoPanel = new JPanel();
         tfInfoPanel.setLayout(new GridBagLayout());
-        tfInfoPanel.setBackground(Color.ORANGE);
+        tfInfoPanel.setBackground(new Color(255,233,133));
         mainPanel.add(tfInfoPanel, "TrueFalseInfo");
         gbc.gridy = 4;
 
@@ -191,7 +199,7 @@ public class QuizGameView {
         toTFQ.setBackground(Color.WHITE);
         JTextArea tfInfo = new JTextArea(tfmodel.getTFQuizInfo());
         tfInfo.setPreferredSize(new Dimension(500, 300));
-        tfInfo.setBackground(Color.ORANGE);
+        tfInfo.setBackground(new Color(255,233,133));
         tfInfo.setFont(new Font("Arial", Font.BOLD, 24));
         tfInfo.setWrapStyleWord(true);
         tfInfo.setLineWrap(true);
@@ -214,7 +222,7 @@ public class QuizGameView {
         // Creating and adding the panel for Estimate Quiz Info to CardLayout Container
         JPanel estInfoPanel = new JPanel();
         estInfoPanel.setLayout(new GridBagLayout());
-        estInfoPanel.setBackground(Color.ORANGE);
+        estInfoPanel.setBackground(new Color(204, 229, 255));
         mainPanel.add(estInfoPanel, "EstimateInfo");
         gbc.gridy = 6;
 
@@ -230,7 +238,7 @@ public class QuizGameView {
         toEstQ.setBackground(Color.WHITE);
         JTextArea estInfo = new JTextArea(estModel.getEstimateNumberQuizInfo());
         estInfo.setPreferredSize(new Dimension(500, 300));
-        estInfo.setBackground(Color.ORANGE);
+        estInfo.setBackground(new Color(204, 229, 255));
         estInfo.setFont(new Font("Arial", Font.BOLD, 24));
         estInfo.setWrapStyleWord(true);
         estInfo.setLineWrap(true);
