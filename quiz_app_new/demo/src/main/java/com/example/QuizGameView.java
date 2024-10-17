@@ -30,7 +30,8 @@ public class QuizGameView {
         this.estModel = estModel;
 
         // init. frame and UI components
-        frame = new JFrame("Quiz Game Menu");
+        frame = new JFrame("Sustainability Quiz");
+        frame.setIconImage(new ImageIcon("sustainabilityLogo.png").getImage());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 720);
 
